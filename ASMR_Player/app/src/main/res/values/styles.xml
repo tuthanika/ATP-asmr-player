@@ -1,10 +1,25 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:windowFullscreen">true</item>
+
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+<!--    <style name="AppSeekBarStyle" parent="Widget.AppCompat.SeekBar">-->
+<!--        <item name="android:progressBackgroundTint">@color/seekBarProgressColor</item>-->
+<!--        <item name="android:progressTint">@color/seekBarProgressActiveColor</item>-->
+
+<!--        <item name="android:maxHeight">3dp</item>-->
+<!--    </style>-->
+
+<!--    <style name="StereoSeekBarStyle" parent="Widget.AppCompat.SeekBar">-->
+<!--        <item name="android:progressBackgroundTint">@color/seekBarProgressActiveColor</item>-->
+<!--        <item name="android:progressBackgroundTintMode">src_over</item>-->
+<!--        <item name="android:progressTint">@android:color/transparent</item>-->
+<!--    </style>-->
 
 </resources>

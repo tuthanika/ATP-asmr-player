@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="block_title_size">18sp</dimen>
+
+    <dimen name="space_between_blocks">30dp</dimen>
+    <dimen name="sound_icon_size">60dp</dimen>
+    <dimen name="list_padding">26dp</dimen>
+
+    <dimen name="seekbar_height">3dp</dimen>
+</resources>

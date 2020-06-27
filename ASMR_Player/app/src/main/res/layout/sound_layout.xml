@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/list_padding"
+        android:layout_marginEnd="@dimen/list_padding"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/soundIcon"
+            android:layout_width="@dimen/sound_icon_size"
+            android:layout_height="@dimen/sound_icon_size"
+            android:src="@drawable/ic_tmp_icon"
+            android:scaleType="fitCenter"
+            android:padding="16dp"
+            android:background="@drawable/sound_icon_background"/>
+
+        <TextView
+            android:id="@+id/soundTitle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginStart="20dp"
+            android:layout_height="wrap_content"
+            android:text="Rain"
+            android:textSize="20sp"
+            android:textColor="@color/mainColor"/>
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:src="@drawable/ic_play"
+            android:scaleType="fitCenter"
+            android:padding="16dp"
+            android:layout_marginEnd="0dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/controlPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#F5F7F8"
+        android:layout_marginTop="10dp"
+        android:paddingTop="10dp"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:paddingBottom="10dp"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_volume"
+                android:scaleType="fitCenter"
+                android:padding="12dp"/>
+
+            <SeekBar
+                android:id="@+id/seekBarVolume"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="10"
+                android:progress="8"
+                android:thumb="@drawable/seekbar_thumb"
+                android:splitTrack="false"
+                android:maxHeight="@dimen/seekbar_height"
+                android:progressDrawable="@drawable/seekbar_style"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_stereo"
+                android:scaleType="fitCenter"
+                android:padding="12dp"/>
+
+            <SeekBar
+                android:id="@+id/seekBarStereo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progress="50"
+                android:thumb="@drawable/seekbar_thumb"
+                android:splitTrack="false"
+                android:maxHeight="@dimen/seekbar_height"
+                android:progressDrawable="@drawable/stereo_seekbar_style"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_dynamic"
+                android:scaleType="fitCenter"
+                android:padding="12dp"/>
+
+            <Switch
+                android:id="@+id/switchDynamicStereo"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

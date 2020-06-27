@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+
+    <color name="mainColor">#5A5A5A</color>
+    <color name="backgroundColor">#FFF</color>
+    <color name="buttonColor">#2092D9</color>
+    <color name="backgroundIconColor">#F5F7F8</color>
+
+
+    <color name="seekBarProgressActiveColor">#5A5A5A</color>
+    <color name="seekBarProgressColor">#BCBCBC</color>
+
+
     <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimaryDark">#F5F7F8</color>
+    <color name="colorAccent">#5A5A5A</color>
 </resources>
