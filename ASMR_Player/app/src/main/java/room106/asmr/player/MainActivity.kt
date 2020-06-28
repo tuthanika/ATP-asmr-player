@@ -17,15 +17,15 @@ class MainActivity : AppCompatActivity() {
         listNatureSound = findViewById(R.id.natureSoundList)
         listAsrmSound = findViewById(R.id.asmrSoundList)
 
-        val s1 = SoundView(this, "Wind")
-        val s2 = SoundView(this, "Rain")
-        val s3 = SoundView(this, "Fire")
-        val s4 = SoundView(this, "Sea")
+        val s1 = SoundView(this, "Wind", true)
+        val s2 = SoundView(this, "Rain", true)
+        val s3 = SoundView(this, "Fire", false)
+        val s4 = SoundView(this, "Sea", false)
 
-        val s5 = SoundView(this, "Wind")
-        val s6 = SoundView(this, "Rain")
-        val s7 = SoundView(this, "Fire")
-        val s8 = SoundView(this, "Sea")
+        val s5 = SoundView(this, "Wind", true)
+        val s6 = SoundView(this, "Rain", false)
+        val s7 = SoundView(this, "Fire", false)
+        val s8 = SoundView(this, "Sea", false)
 
         listNatureSound.addView(s1)
         listNatureSound.addView(s2)

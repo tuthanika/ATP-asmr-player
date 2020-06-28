@@ -32,6 +32,7 @@
             android:textColor="@color/mainColor"/>
 
         <ImageButton
+            android:id="@+id/buttonPlay"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@null"
