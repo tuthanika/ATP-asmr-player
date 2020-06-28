@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FavoritesActivity"
+    android:background="@color/backgroundColor"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/favorite_header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_back"
+            android:scaleType="fitCenter"
+            android:padding="12dp"
+            android:background="@null"
+            android:onClick="onClickBack"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="@color/fontColor"
+            android:text="@string/favotires_activity_title"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:layout_below="@id/favorite_header"
+        android:layout_above="@id/saveCurrentMixButton">
+
+        <LinearLayout
+            android:id="@+id/favoriteMixesList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:divider="@drawable/list_divider"
+            android:showDividers="middle"/>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/saveCurrentMixButton"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginStart="@dimen/list_padding"
+        android:layout_marginEnd="@dimen/list_padding"
+        android:layout_alignParentBottom="true"
+        android:text="@string/save_current_button"
+        android:textAllCaps="false"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/main_button"
+        style="@style/Widget.AppCompat.Button.Borderless"/>
+
+</RelativeLayout>

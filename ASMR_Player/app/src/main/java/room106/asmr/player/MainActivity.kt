@@ -1,7 +1,10 @@
 package room106.asmr.player
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageButton
 import android.widget.LinearLayout
 
 class MainActivity : AppCompatActivity() {
@@ -37,6 +40,11 @@ class MainActivity : AppCompatActivity() {
         listAsrmSound.addView(s7)
         listAsrmSound.addView(s8)
 
+    }
 
+    fun onClickFavorites(v: View) {
+        val intent = Intent(this, FavoritesActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.freeze)
     }
 }

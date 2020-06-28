@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ASMR_Player</string>
+    <string name="favotires_activity_title">Favotires</string>
+    <string name="save_current_button">Save current</string>
 </resources>
