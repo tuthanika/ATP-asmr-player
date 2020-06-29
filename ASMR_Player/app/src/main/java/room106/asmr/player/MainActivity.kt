@@ -53,4 +53,10 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.freeze)
     }
+
+    fun onClickBuyProVersion(v: View) {
+        val intent = Intent(this, ProVersionActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_bottom, R.anim.freeze)
+    }
 }
