@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context=".TimerActivity"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/timer_header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_back"
+            android:scaleType="fitCenter"
+            android:padding="12dp"
+            android:background="@null"/>
+
+        <TextView
+            android:id="@+id/timerHeaderTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:textSize="@dimen/font_size"
+            android:gravity="center"
+            android:textColor="@color/fontColor"
+            android:text="@string/sleep_timer_header"
+            android:onClick="onClickBack"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/timersList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:divider="@drawable/list_divider"
+            android:showDividers="middle"
+            android:paddingTop="10dp"
+            android:paddingStart="@dimen/list_padding"
+            android:paddingEnd="@dimen/list_padding"/>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -6,6 +6,7 @@
     <dimen name="space_between_blocks">30dp</dimen>
     <dimen name="sound_icon_size">60dp</dimen>
     <dimen name="list_padding">26dp</dimen>
+    <dimen name="font_size">20sp</dimen>
 
     <dimen name="seekbar_height">3dp</dimen>
     <integer name="animation_duration">300</integer>

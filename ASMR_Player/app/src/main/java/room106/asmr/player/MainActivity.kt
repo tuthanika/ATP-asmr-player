@@ -47,4 +47,10 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.freeze)
     }
+
+    fun onClickSleepTimer(v: View) {
+        val intent = Intent(this, TimerActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.freeze)
+    }
 }
