@@ -4,10 +4,13 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.content.Context
+import android.media.MediaPlayer
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.widget.*
+import kotlinx.android.synthetic.main.sound_layout.view.*
+import java.lang.Thread.sleep
 
 
 class SoundView: LinearLayout {
@@ -38,9 +41,15 @@ class SoundView: LinearLayout {
     private var isFree = false
     private var isPlaying = false
 
+    // Sound
+    private var mediaPlayer: MediaPlayer? = null
+    private val MIN_STEREO_SOUND = 0.1f
+    private var dynamicIncreasing = true
+
     constructor(context: Context?,
                 title: String,
-                isFree: Boolean): super(context) {
+                isFree: Boolean,
+                mediaResource: Int): super(context) {
 
         View.inflate(context, R.layout.sound_layout, this)
 
@@ -76,6 +85,10 @@ class SoundView: LinearLayout {
         mVolumeSeekBar.setOnSeekBarChangeListener(onVolumeSeekBarChangeListener)
         mStereoSeekBar.setOnSeekBarChangeListener(onStereoSeekBarChangeListener)
         mSwitchDynamicStereo.setOnCheckedChangeListener(onDynamicStereoSwitchChange)
+
+        // Create media player
+        mediaPlayer = MediaPlayer.create(context, mediaResource)
+        mediaPlayer?.isLooping = true
     }
 
     private val onClickIconListener = OnClickListener {
@@ -122,14 +135,21 @@ class SoundView: LinearLayout {
     }
 
     private val onClickPlayButton = OnClickListener {
+
         // TODO - Add - "if (isFree || isProVersion)"
         if (isFree) {
             isPlaying = !isPlaying
 
             if (isPlaying) {
                 mPlayButton.setImageResource(R.drawable.ic_pause)
+
+                // Play sound
+                mediaPlayer?.start()
             } else {
                 mPlayButton.setImageResource(R.drawable.ic_play)
+
+                // Stop sound
+                mediaPlayer?.pause()
             }
         }
     }
@@ -138,8 +158,10 @@ class SoundView: LinearLayout {
         override fun onStartTrackingTouch(p0: SeekBar?) { }
         override fun onStopTrackingTouch(p0: SeekBar?) { }
         override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
-            // TODO - Implement
-            Log.d(TAG,"Volume changed: $progress")
+
+            val volume = progress.toFloat() / 10
+            val stereo = seekBarStereo.progress.toFloat() / 500
+            updateVolumeStereo(volume, stereo)
         }
     }
 
@@ -147,17 +169,60 @@ class SoundView: LinearLayout {
         override fun onStartTrackingTouch(p0: SeekBar?) { }
         override fun onStopTrackingTouch(p0: SeekBar?) { }
         override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
-            // TODO - Implement
-            Log.d(TAG,"Stereo changed: $progress")
+
+            val volume = seekBarVolume.progress.toFloat() / 10
+            val stereo = progress.toFloat() / 500
+            updateVolumeStereo(volume, stereo)
         }
     }
 
-    private val onDynamicStereoSwitchChange = CompoundButton.OnCheckedChangeListener {
-            compoundButton: CompoundButton,
-            isChecked: Boolean ->
-        // TODO - Implement
-        Log.d(TAG, "Switch changed: $isChecked")
+    private val dynamicStereoRunnable = Runnable {
+        while (mSwitchDynamicStereo.isChecked) {
+            if (dynamicIncreasing) {
+                seekBarStereo.progress += 1
+
+                if (seekBarStereo.progress >= 500) {
+                    dynamicIncreasing = false
+                }
+            } else {
+                seekBarStereo.progress -= 1
+
+                if (seekBarStereo.progress <= 0) {
+                    dynamicIncreasing = true
+                }
+            }
+            sleep(50)
+        }
     }
+    private val dynamicStereoThread = Thread(dynamicStereoRunnable)
+
+    private val onDynamicStereoSwitchChange = CompoundButton.OnCheckedChangeListener {
+            _: CompoundButton,
+            isChecked: Boolean ->
+
+        Log.d(TAG, "Switch changed: $isChecked")
+
+        if (isChecked) {
+            dynamicStereoThread.start()
+        }
+    }
+
+    private fun updateVolumeStereo(volume: Float, stereo: Float) {
+        var leftVolume = volume * (1 - stereo)
+        var rightVolume = volume * stereo
+
+        if (leftVolume < MIN_STEREO_SOUND) {
+            leftVolume = MIN_STEREO_SOUND
+        }
+
+        if (rightVolume < MIN_STEREO_SOUND) {
+            rightVolume = MIN_STEREO_SOUND
+        }
+
+        mediaPlayer?.setVolume(leftVolume, rightVolume)
+        Log.d(TAG,"Volume=$volume. Stereo=$stereo. L=$leftVolume R=$rightVolume")
+    }
+
 
     companion object {
         const val TAG = "SoundView"

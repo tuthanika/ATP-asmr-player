@@ -20,15 +20,15 @@ class MainActivity : AppCompatActivity() {
         listNatureSound = findViewById(R.id.natureSoundList)
         listAsrmSound = findViewById(R.id.asmrSoundList)
 
-        val s1 = SoundView(this, "Wind", true)
-        val s2 = SoundView(this, "Rain", true)
-        val s3 = SoundView(this, "Fire", false)
-        val s4 = SoundView(this, "Sea", false)
+        val s1 = SoundView(this, "Wind", true, R.raw.thunderstorm_30s)
+        val s2 = SoundView(this, "Rain", true, R.raw.thunderstorm_30s)
+        val s3 = SoundView(this, "Fire", false, R.raw.thunderstorm_30s)
+        val s4 = SoundView(this, "Sea", false, R.raw.thunderstorm_30s)
 
-        val s5 = SoundView(this, "Wind", true)
-        val s6 = SoundView(this, "Rain", false)
-        val s7 = SoundView(this, "Fire", false)
-        val s8 = SoundView(this, "Sea", false)
+        val s5 = SoundView(this, "Wind", true, R.raw.thunderstorm_30s)
+        val s6 = SoundView(this, "Rain", false, R.raw.thunderstorm_30s)
+        val s7 = SoundView(this, "Fire", false, R.raw.thunderstorm_30s)
+        val s8 = SoundView(this, "Sea", false, R.raw.thunderstorm_30s)
 
         listNatureSound.addView(s1)
         listNatureSound.addView(s2)
