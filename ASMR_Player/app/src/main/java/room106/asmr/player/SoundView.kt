@@ -42,8 +42,8 @@ class SoundView: LinearLayout {
     private var isPlaying = false
 
     // Sound
-    private var mediaPlayer: MediaPlayer? = null
-    private val MIN_STEREO_SOUND = 0.1f
+    private var loopMediaPlayer: LoopMediaPlayer? = null
+    private val MIN_STEREO_SOUND = 0f
     private var dynamicIncreasing = true
 
     constructor(context: Context?,
@@ -87,8 +87,7 @@ class SoundView: LinearLayout {
         mSwitchDynamicStereo.setOnCheckedChangeListener(onDynamicStereoSwitchChange)
 
         // Create media player
-        mediaPlayer = MediaPlayer.create(context, mediaResource)
-        mediaPlayer?.isLooping = true
+        loopMediaPlayer = LoopMediaPlayer(context, mediaResource)
     }
 
     private val onClickIconListener = OnClickListener {
@@ -144,12 +143,12 @@ class SoundView: LinearLayout {
                 mPlayButton.setImageResource(R.drawable.ic_pause)
 
                 // Play sound
-                mediaPlayer?.start()
+                loopMediaPlayer?.start()
             } else {
                 mPlayButton.setImageResource(R.drawable.ic_play)
 
                 // Stop sound
-                mediaPlayer?.pause()
+                loopMediaPlayer?.pause()
             }
         }
     }
@@ -159,7 +158,7 @@ class SoundView: LinearLayout {
         override fun onStopTrackingTouch(p0: SeekBar?) { }
         override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
 
-            val volume = progress.toFloat() / 10
+            val volume = progress.toFloat() / 100
             val stereo = seekBarStereo.progress.toFloat() / 500
             updateVolumeStereo(volume, stereo)
         }
@@ -170,7 +169,7 @@ class SoundView: LinearLayout {
         override fun onStopTrackingTouch(p0: SeekBar?) { }
         override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
 
-            val volume = seekBarVolume.progress.toFloat() / 10
+            val volume = seekBarVolume.progress.toFloat() / 100
             val stereo = progress.toFloat() / 500
             updateVolumeStereo(volume, stereo)
         }
@@ -219,7 +218,7 @@ class SoundView: LinearLayout {
             rightVolume = MIN_STEREO_SOUND
         }
 
-        mediaPlayer?.setVolume(leftVolume, rightVolume)
+        loopMediaPlayer?.setVolume(leftVolume, rightVolume)
         Log.d(TAG,"Volume=$volume. Stereo=$stereo. L=$leftVolume R=$rightVolume")
     }
 
