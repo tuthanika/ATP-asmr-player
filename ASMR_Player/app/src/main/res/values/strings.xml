@@ -6,4 +6,7 @@
     <string name="timer_title">Off</string>
     <string name="pro_version_price">$1.99</string>
     <string name="buy_pro_version_offer">Buy a Pro Version to unlock all sounds forever.</string>
+    <string name="natural_sound_block_title">Natural</string>
+    <string name="process_sound_block_title">Process</string>
+    <string name="asmr_triggers_sound_block_title">ASMR Triggers</string>
 </resources>

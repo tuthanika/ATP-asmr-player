@@ -90,13 +90,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nature"
+                android:text="@string/natural_sound_block_title"
                 android:textColor="@color/mainColor"
                 android:layout_marginStart="@dimen/list_padding"
                 android:textSize="@dimen/block_title_size"/>
 
             <LinearLayout
-                android:id="@+id/natureSoundList"
+                android:id="@+id/naturalSoundsList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -111,13 +111,34 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ASMR Triggers"
+                android:text="@string/process_sound_block_title"
                 android:textColor="@color/mainColor"
                 android:layout_marginStart="@dimen/list_padding"
                 android:textSize="@dimen/block_title_size"/>
 
             <LinearLayout
-                android:id="@+id/asmrSoundList"
+                android:id="@+id/processSoundsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:divider="@drawable/list_divider"
+                android:showDividers="middle"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_between_blocks"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/asmr_triggers_sound_block_title"
+                android:textColor="@color/mainColor"
+                android:layout_marginStart="@dimen/list_padding"
+                android:textSize="@dimen/block_title_size"/>
+
+            <LinearLayout
+                android:id="@+id/asmrSoundsList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
