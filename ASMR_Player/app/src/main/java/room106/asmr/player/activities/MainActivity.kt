@@ -1,4 +1,4 @@
-package room106.asmr.player
+package room106.asmr.player.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -6,13 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.core.view.get
-import androidx.core.view.size
 import com.google.gson.Gson
+import room106.asmr.player.R
 import room106.asmr.player.models.Mix
-import room106.asmr.player.models.Sound
+import room106.asmr.player.views.SoundView
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,31 +29,122 @@ class MainActivity : AppCompatActivity() {
         asmrSoundsList = findViewById(R.id.asmrSoundsList)
 
         //region Create SoundViews
-        val s1 = SoundView(this, "Fireplace", true, R.raw.fireplace)
-        val s2 = SoundView(this, "Rain", true, R.raw.rain)
-        val s3 = SoundView(this, "Sea", true, R.raw.sea)
-        val s4 = SoundView(this, "Train", true, R.raw.train)
-        val s5 = SoundView(this, "Water Drops", true, R.raw.water_drops)
-        val s6 = SoundView(this, "Wind", true, R.raw.wind)
+        val s1 = SoundView(
+            this,
+            "Fireplace",
+            true,
+            R.raw.fireplace
+        )
+        val s2 =
+            SoundView(this, "Rain", true, R.raw.rain)
+        val s3 =
+            SoundView(this, "Sea", true, R.raw.sea)
+        val s4 =
+            SoundView(this, "Train", true, R.raw.train)
+        val s5 = SoundView(
+            this,
+            "Water Drops",
+            true,
+            R.raw.water_drops
+        )
+        val s6 =
+            SoundView(this, "Wind", true, R.raw.wind)
 
-        val s7 = SoundView(this, "Blowing", true, R.raw.blowing)
-        val s8 = SoundView(this, "Cutting", true, R.raw.cutting)
-        val s9 = SoundView(this, "Eating", true, R.raw.eating)
-        val s10 = SoundView(this, "Head Scratching", true, R.raw.head_scratching)
-        val s11 = SoundView(this, "Typing", true, R.raw.typing)
+        val s7 = SoundView(
+            this,
+            "Blowing",
+            true,
+            R.raw.blowing
+        )
+        val s8 = SoundView(
+            this,
+            "Cutting",
+            true,
+            R.raw.cutting
+        )
+        val s9 = SoundView(
+            this,
+            "Eating",
+            true,
+            R.raw.eating
+        )
+        val s10 = SoundView(
+            this,
+            "Head Scratching",
+            true,
+            R.raw.head_scratching
+        )
+        val s11 = SoundView(
+            this,
+            "Typing",
+            true,
+            R.raw.typing
+        )
 
-        val s12 = SoundView(this, "Bottle", true, R.raw.bottle)
-        val s13 = SoundView(this, "Gloves", true, R.raw.gloves)
-        val s14 = SoundView(this, "Hands #1", true, R.raw.hands_1)
-        val s15 = SoundView(this, "Hands #2", true, R.raw.hands_2)
-        val s16 = SoundView(this, "Hands #3", true, R.raw.hands_3)
-        val s17 = SoundView(this, "Massage", true, R.raw.massage)
-        val s18 = SoundView(this, "Mouth", true, R.raw.mouth)
-        val s19 = SoundView(this, "Packaging", true, R.raw.packaging)
-        val s20 = SoundView(this, "Tapping #1", true, R.raw.tapping_1)
-        val s21 = SoundView(this, "Tapping #2", true, R.raw.tapping_2)
-        val s22 = SoundView(this, "Tapping #3", true, R.raw.tapping_3)
-        val s23 = SoundView(this, "Water", true, R.raw.water)
+        val s12 = SoundView(
+            this,
+            "Bottle",
+            true,
+            R.raw.bottle
+        )
+        val s13 = SoundView(
+            this,
+            "Gloves",
+            true,
+            R.raw.gloves
+        )
+        val s14 = SoundView(
+            this,
+            "Hands #1",
+            true,
+            R.raw.hands_1
+        )
+        val s15 = SoundView(
+            this,
+            "Hands #2",
+            true,
+            R.raw.hands_2
+        )
+        val s16 = SoundView(
+            this,
+            "Hands #3",
+            true,
+            R.raw.hands_3
+        )
+        val s17 = SoundView(
+            this,
+            "Massage",
+            true,
+            R.raw.massage
+        )
+        val s18 =
+            SoundView(this, "Mouth", true, R.raw.mouth)
+        val s19 = SoundView(
+            this,
+            "Packaging",
+            true,
+            R.raw.packaging
+        )
+        val s20 = SoundView(
+            this,
+            "Tapping #1",
+            true,
+            R.raw.tapping_1
+        )
+        val s21 = SoundView(
+            this,
+            "Tapping #2",
+            true,
+            R.raw.tapping_2
+        )
+        val s22 = SoundView(
+            this,
+            "Tapping #3",
+            true,
+            R.raw.tapping_3
+        )
+        val s23 =
+            SoundView(this, "Water", true, R.raw.water)
 
 
         naturalSoundsList.addView(s1)
@@ -129,19 +219,28 @@ class MainActivity : AppCompatActivity() {
         val mixJSON = analyzeCurrentMix()
         intent.putExtra("currentMixJSON", mixJSON)
         startActivityForResult(intent, 1)
-        overridePendingTransition(R.anim.slide_in_right, R.anim.freeze)
+        overridePendingTransition(
+            R.anim.slide_in_right,
+            R.anim.freeze
+        )
     }
 
     fun onClickSleepTimer(v: View) {
         val intent = Intent(this, TimerActivity::class.java)
         startActivity(intent)
-        overridePendingTransition(R.anim.slide_in_right, R.anim.freeze)
+        overridePendingTransition(
+            R.anim.slide_in_right,
+            R.anim.freeze
+        )
     }
 
     fun onClickBuyProVersion(v: View) {
         val intent = Intent(this, ProVersionActivity::class.java)
         startActivity(intent)
-        overridePendingTransition(R.anim.slide_in_bottom, R.anim.freeze)
+        overridePendingTransition(
+            R.anim.slide_in_bottom,
+            R.anim.freeze
+        )
     }
 
     private fun analyzeCurrentMix(): String {

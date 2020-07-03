@@ -1,4 +1,4 @@
-package room106.asmr.player
+package room106.asmr.player.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -8,8 +8,11 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
+import room106.asmr.player.FileReader
+import room106.asmr.player.R
 import room106.asmr.player.models.Mix
 import room106.asmr.player.models.MixesList
+import room106.asmr.player.views.FavoriteMixView
 
 
 class FavoritesActivity : AppCompatActivity() {
@@ -52,7 +55,8 @@ class FavoritesActivity : AppCompatActivity() {
             val mixesListJSON = Gson().toJson(mMixesList)
             Log.d("JSON", "mixesListJSON: $mixesListJSON")
 
-            FileReader().rewriteFavoriteMixesList(this, mixesListJSON)
+            FileReader()
+                .rewriteFavoriteMixesList(this, mixesListJSON)
         }
 
         updateMixesListView()
@@ -67,7 +71,8 @@ class FavoritesActivity : AppCompatActivity() {
         val list = mMixesList!!.getList()
 
         for (i in 0 until list.size) {
-            val mixView = FavoriteMixView(this, "Mix #${i + 1}")
+            val mixView =
+                FavoriteMixView(this, "Mix #${i + 1}")
             mixView.setMix(list[i])
 
             mFavoriteMixesLinearLayout.addView(mixView)
@@ -81,7 +86,10 @@ class FavoritesActivity : AppCompatActivity() {
         setResult(Activity.RESULT_OK, i)
 
         finish()
-        overridePendingTransition(R.anim.freeze, R.anim.slide_out_left)
+        overridePendingTransition(
+            R.anim.freeze,
+            R.anim.slide_out_left
+        )
     }
 
 
@@ -89,7 +97,10 @@ class FavoritesActivity : AppCompatActivity() {
     fun onClickBack(v: View) {
         setResult(Activity.RESULT_CANCELED)
         finish()
-        overridePendingTransition(R.anim.freeze, R.anim.slide_out_left)
+        overridePendingTransition(
+            R.anim.freeze,
+            R.anim.slide_out_left
+        )
     }
 
 }

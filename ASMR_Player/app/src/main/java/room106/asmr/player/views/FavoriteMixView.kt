@@ -1,4 +1,4 @@
-package room106.asmr.player
+package room106.asmr.player.views
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
+import room106.asmr.player.activities.FavoritesActivity
+import room106.asmr.player.R
 import room106.asmr.player.models.Mix
 
 class FavoriteMixView: LinearLayout {
@@ -27,7 +29,8 @@ class FavoriteMixView: LinearLayout {
     private var mMix: Mix? = null
 
     constructor(context: Context?, mixTitle: String): super(context) {
-        View.inflate(context, R.layout.favorite_mix_layout, this)
+        View.inflate(context,
+            R.layout.favorite_mix_layout, this)
 
         // Connect views
         mMixTitleTextView = findViewById(R.id.mixTitleTextView)

@@ -1,4 +1,4 @@
-package room106.asmr.player
+package room106.asmr.player.views
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import room106.asmr.player.R
+import room106.asmr.player.activities.TimerActivity
 
 class TimerView: LinearLayout {
 
@@ -28,7 +30,8 @@ class TimerView: LinearLayout {
     private var timerID = -1
 
     constructor(context: Context?, timerTitle: String, id: Int) : super(context) {
-        View.inflate(context, R.layout.timer_item_layout, this)
+        View.inflate(context,
+            R.layout.timer_item_layout, this)
 
         // Connect views
         mTimerIconImageView = findViewById(R.id.timerIcon)

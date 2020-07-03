@@ -1,10 +1,12 @@
-package room106.asmr.player
+package room106.asmr.player.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import androidx.core.view.get
+import room106.asmr.player.R
+import room106.asmr.player.views.TimerView
 
 class TimerActivity : AppCompatActivity() {
 
@@ -17,7 +19,8 @@ class TimerActivity : AppCompatActivity() {
 
         mTimersList = findViewById(R.id.timersList)
 
-        val timerOff = TimerView(this, "Off", 0).apply { isTimerSelected = true }
+        val timerOff = TimerView(this, "Off", 0)
+            .apply { isTimerSelected = true }
         val timer15m = TimerView(this, "15 minutes", 1)
         val timer30m = TimerView(this, "30 minutes", 2)
         val timer45m = TimerView(this, "45 minutes", 3)
@@ -42,6 +45,9 @@ class TimerActivity : AppCompatActivity() {
 
     fun onClickBack(v: View) {
         finish()
-        overridePendingTransition(R.anim.freeze, R.anim.slide_out_left)
+        overridePendingTransition(
+            R.anim.freeze,
+            R.anim.slide_out_left
+        )
     }
 }

@@ -1,15 +1,16 @@
-package room106.asmr.player
+package room106.asmr.player.views
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.content.Context
-import android.media.MediaPlayer
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.widget.*
 import kotlinx.android.synthetic.main.sound_layout.view.*
+import room106.asmr.player.LoopMediaPlayer
+import room106.asmr.player.R
 import room106.asmr.player.models.Sound
 import java.lang.Thread.sleep
 
@@ -96,7 +97,8 @@ class SoundView: LinearLayout {
         mSwitchDynamicStereo.setOnCheckedChangeListener(onDynamicStereoSwitchChange)
 
         // Create media player
-        loopMediaPlayer = LoopMediaPlayer(context, mediaResource)
+        loopMediaPlayer =
+            LoopMediaPlayer(context, mediaResource)
     }
 
     private val onClickIconListener = OnClickListener {
