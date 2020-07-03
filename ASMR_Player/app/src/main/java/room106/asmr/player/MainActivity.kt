@@ -1,11 +1,18 @@
 package room106.asmr.player
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
+import androidx.core.view.get
+import androidx.core.view.size
+import com.google.gson.Gson
+import room106.asmr.player.models.Mix
+import room106.asmr.player.models.Sound
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         processSoundsList = findViewById(R.id.processSoundsList)
         asmrSoundsList = findViewById(R.id.asmrSoundsList)
 
+        //region Create SoundViews
         val s1 = SoundView(this, "Fireplace", true, R.raw.fireplace)
         val s2 = SoundView(this, "Rain", true, R.raw.rain)
         val s3 = SoundView(this, "Sea", true, R.raw.sea)
@@ -74,12 +82,53 @@ class MainActivity : AppCompatActivity() {
         asmrSoundsList.addView(s21)
         asmrSoundsList.addView(s22)
         asmrSoundsList.addView(s23)
+        //endregion
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            val mixJSON = data?.getStringExtra("playMix")
+            Log.d("JSON", "playMix is ALLIVE. JSON: \n $mixJSON")
+
+            val mixToPlay = Gson().fromJson(mixJSON, Mix::class.java)
+
+            val lists = ArrayList<LinearLayout>().apply {
+                add(naturalSoundsList)
+                add(processSoundsList)
+                add(asmrSoundsList)
+            }
+
+            for (soundsList in lists) {
+                for (i in 0 until soundsList.childCount) {
+                    val soundView = soundsList[i] as SoundView
+
+                    var isFound = false
+
+                    for (sound in mixToPlay.getSoundsList()) {
+
+                        if (soundView.isTitleEqual(sound.title)) {
+                            soundView.setSoundObject(sound)
+                            soundView.play()
+                            isFound = true
+                            break
+                        }
+                    }
+                    if (!isFound) {
+                        soundView.pause()
+                    }
+                }
+            }
+        }
     }
 
     fun onClickFavorites(v: View) {
         val intent = Intent(this, FavoritesActivity::class.java)
-        startActivity(intent)
+        val mixJSON = analyzeCurrentMix()
+        intent.putExtra("currentMixJSON", mixJSON)
+        startActivityForResult(intent, 1)
         overridePendingTransition(R.anim.slide_in_right, R.anim.freeze)
     }
 
@@ -93,5 +142,33 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, ProVersionActivity::class.java)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_bottom, R.anim.freeze)
+    }
+
+    private fun analyzeCurrentMix(): String {
+
+        val lists = ArrayList<LinearLayout>().apply {
+            add(naturalSoundsList)
+            add(processSoundsList)
+            add(asmrSoundsList)
+        }
+
+        var currentMix = Mix()
+
+        for (soundsList in lists) {
+            for (i in 0 until soundsList.childCount) {
+                val soundView = soundsList[i] as SoundView
+
+                if (soundView.isPlaying()) {
+                    val sound = soundView.getSoundObject()
+                    if (sound != null) {
+                        currentMix.add(sound)
+                    }
+                }
+            }
+        }
+
+        val mixJSON = Gson().toJson(currentMix)
+        Log.d("JSON", "CurrentMix: $mixJSON")
+        return mixJSON
     }
 }

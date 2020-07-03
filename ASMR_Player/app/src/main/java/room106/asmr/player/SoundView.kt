@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import kotlinx.android.synthetic.main.sound_layout.view.*
+import room106.asmr.player.models.Sound
 import java.lang.Thread.sleep
 
 
@@ -37,9 +38,16 @@ class SoundView: LinearLayout {
     private var controlPanelIsVisible = false
     private var controlPanelMeasuredHeight = 0
 
+    // Vars
+    private var mTitle: String? = null
+
     // States
     private var isFree = false
-    private var isPlaying = false
+    private var _isPlaying = false
+
+    // Consts
+    private val VOLUME_SEEKBAR_MAX = 100
+    private val STEREO_SEEKBAR_MAX = 500
 
     // Sound
     private var loopMediaPlayer: LoopMediaPlayer? = null
@@ -66,6 +74,7 @@ class SoundView: LinearLayout {
         mIconView.setOnClickListener(onClickIconListener)
 
         // Title
+        mTitle = title
         mTitleView.text = title
 
         // Play Button
@@ -137,9 +146,9 @@ class SoundView: LinearLayout {
 
         // TODO - Add - "if (isFree || isProVersion)"
         if (isFree) {
-            isPlaying = !isPlaying
+            _isPlaying = !_isPlaying
 
-            if (isPlaying) {
+            if (_isPlaying) {
                 mPlayButton.setImageResource(R.drawable.ic_pause)
 
                 // Play sound
@@ -158,8 +167,8 @@ class SoundView: LinearLayout {
         override fun onStopTrackingTouch(p0: SeekBar?) { }
         override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
 
-            val volume = progress.toFloat() / 100
-            val stereo = seekBarStereo.progress.toFloat() / 500
+            val volume = progress.toFloat() / VOLUME_SEEKBAR_MAX
+            val stereo = seekBarStereo.progress.toFloat() / STEREO_SEEKBAR_MAX
             updateVolumeStereo(volume, stereo)
         }
     }
@@ -169,8 +178,8 @@ class SoundView: LinearLayout {
         override fun onStopTrackingTouch(p0: SeekBar?) { }
         override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
 
-            val volume = seekBarVolume.progress.toFloat() / 100
-            val stereo = progress.toFloat() / 500
+            val volume = seekBarVolume.progress.toFloat() / VOLUME_SEEKBAR_MAX
+            val stereo = progress.toFloat() / STEREO_SEEKBAR_MAX
             updateVolumeStereo(volume, stereo)
         }
     }
@@ -180,7 +189,7 @@ class SoundView: LinearLayout {
             if (dynamicIncreasing) {
                 seekBarStereo.progress += 1
 
-                if (seekBarStereo.progress >= 500) {
+                if (seekBarStereo.progress >= STEREO_SEEKBAR_MAX) {
                     dynamicIncreasing = false
                 }
             } else {
@@ -220,6 +229,51 @@ class SoundView: LinearLayout {
 
         loopMediaPlayer?.setVolume(leftVolume, rightVolume)
         Log.d(TAG,"Volume=$volume. Stereo=$stereo. L=$leftVolume R=$rightVolume")
+    }
+
+
+    fun getSoundObject(): Sound? {
+
+        if (_isPlaying) {
+            if (mTitle != null) {
+                val volume = seekBarVolume.progress.toFloat() / VOLUME_SEEKBAR_MAX
+                val stereo = seekBarStereo.progress.toFloat() / STEREO_SEEKBAR_MAX
+
+                return Sound(mTitle!!, volume, stereo, switchDynamicStereo.isChecked)
+            }
+        }
+        return null
+    }
+
+    fun isTitleEqual(title: String): Boolean {
+        return mTitle.equals(title)
+    }
+
+    fun setSoundObject(sound: Sound) {
+        mVolumeSeekBar.progress = (sound.volume * VOLUME_SEEKBAR_MAX).toInt()
+        mStereoSeekBar.progress = (sound.stereo * STEREO_SEEKBAR_MAX).toInt()
+        mSwitchDynamicStereo.isChecked = sound.isDynamic
+        updateVolumeStereo(sound.volume, sound.stereo)
+    }
+
+    fun play() {
+        _isPlaying = true
+        mPlayButton.setImageResource(R.drawable.ic_pause)
+
+        // Play sound
+        loopMediaPlayer?.start()
+    }
+
+    fun pause() {
+        _isPlaying = false
+        mPlayButton.setImageResource(R.drawable.ic_play)
+
+        // Stop sound
+        loopMediaPlayer?.pause()
+    }
+
+    fun isPlaying(): Boolean {
+        return _isPlaying
     }
 
 
