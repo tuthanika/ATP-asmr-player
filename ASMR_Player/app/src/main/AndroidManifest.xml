@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ProVersionActivity"></activity>
+        <activity android:name=".CloseActivity"></activity>
+        <activity android:name=".activities.ProVersionActivity" />
         <activity android:name=".activities.TimerActivity" />
         <activity android:name=".activities.FavoritesActivity" />
         <activity android:name=".activities.MainActivity">
@@ -19,6 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".TimerEventReceiver" />
     </application>
 
 </manifest>

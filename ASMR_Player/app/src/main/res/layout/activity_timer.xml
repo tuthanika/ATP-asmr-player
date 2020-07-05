@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -39,7 +39,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        android:layout_below="@id/timer_header"
+        android:layout_above="@id/cancelTimerButton">
 
         <LinearLayout
             android:id="@+id/timersList"
@@ -54,4 +56,22 @@
 
     </ScrollView>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/cancelTimerButton"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginStart="@dimen/list_padding"
+        android:layout_marginEnd="@dimen/list_padding"
+        android:layout_alignParentBottom="true"
+        android:text="@string/cancel_timer_buttin"
+        android:textAllCaps="false"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/main_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:onClick="onClickCancelTimer"
+        android:visibility="gone"/>
+
+</RelativeLayout>

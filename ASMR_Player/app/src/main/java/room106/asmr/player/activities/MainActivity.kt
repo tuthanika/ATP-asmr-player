@@ -2,16 +2,18 @@ package room106.asmr.player.activities
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
 import com.google.gson.Gson
+import room106.asmr.player.CloseActivity
 import room106.asmr.player.R
 import room106.asmr.player.models.Mix
 import room106.asmr.player.views.SoundView
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -173,7 +175,6 @@ class MainActivity : AppCompatActivity() {
         asmrSoundsList.addView(s22)
         asmrSoundsList.addView(s23)
         //endregion
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -270,4 +271,5 @@ class MainActivity : AppCompatActivity() {
         Log.d("JSON", "CurrentMix: $mixJSON")
         return mixJSON
     }
+
 }

@@ -57,7 +57,8 @@
             android:scaleType="fitCenter"
             android:layout_marginEnd="5dp"
             android:padding="12dp"
-            android:onClick="onClickSleepTimer"/>
+            android:onClick="onClickSleepTimer"
+            android:visibility="gone"/>
 
         <ImageButton
             android:layout_width="50dp"

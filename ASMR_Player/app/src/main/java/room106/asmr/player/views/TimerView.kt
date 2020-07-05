@@ -28,8 +28,9 @@ class TimerView: LinearLayout {
     // States
     private var _isTimerSelected = false
     private var timerID = -1
+    private var mTime = 0
 
-    constructor(context: Context?, timerTitle: String, id: Int) : super(context) {
+    constructor(context: Context?, timerTitle: String, id: Int, time: Int) : super(context) {
         View.inflate(context,
             R.layout.timer_item_layout, this)
 
@@ -39,9 +40,10 @@ class TimerView: LinearLayout {
 
         mTimerTitleTextView.text = timerTitle
         timerID = id
+        mTime = time
 
         setOnClickListener {
-            (context as TimerActivity).selectTimer(timerID)
+            (context as TimerActivity).selectTimer(timerID, mTime)
         }
     }
 
