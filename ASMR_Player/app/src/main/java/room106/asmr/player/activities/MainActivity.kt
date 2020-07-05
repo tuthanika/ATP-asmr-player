@@ -31,122 +31,31 @@ class MainActivity : AppCompatActivity() {
         asmrSoundsList = findViewById(R.id.asmrSoundsList)
 
         //region Create SoundViews
-        val s1 = SoundView(
-            this,
-            "Fireplace",
-            true,
-            R.raw.fireplace
-        )
-        val s2 =
-            SoundView(this, "Rain", true, R.raw.rain)
-        val s3 =
-            SoundView(this, "Sea", true, R.raw.sea)
-        val s4 =
-            SoundView(this, "Train", true, R.raw.train)
-        val s5 = SoundView(
-            this,
-            "Water Drops",
-            true,
-            R.raw.water_drops
-        )
-        val s6 =
-            SoundView(this, "Wind", true, R.raw.wind)
+        val s1 = SoundView(this, "Fireplace", true, R.raw.fireplace, R.drawable.ic_fire)
+        val s2 = SoundView(this, "Rain", true, R.raw.rain, R.drawable.ic_rain)
+        val s3 = SoundView(this, "Sea", true, R.raw.sea, R.drawable.ic_sea)
+        val s4 = SoundView(this, "Train", true, R.raw.train, R.drawable.ic_train)
+        val s5 = SoundView(this, "Water Drops", true, R.raw.water_drops, R.drawable.ic_water)
+        val s6 = SoundView(this, "Wind", true, R.raw.wind, R.drawable.ic_wind)
 
-        val s7 = SoundView(
-            this,
-            "Blowing",
-            true,
-            R.raw.blowing
-        )
-        val s8 = SoundView(
-            this,
-            "Cutting",
-            true,
-            R.raw.cutting
-        )
-        val s9 = SoundView(
-            this,
-            "Eating",
-            true,
-            R.raw.eating
-        )
-        val s10 = SoundView(
-            this,
-            "Head Scratching",
-            true,
-            R.raw.head_scratching
-        )
-        val s11 = SoundView(
-            this,
-            "Typing",
-            true,
-            R.raw.typing
-        )
+        val s7 = SoundView(this, "Blowing", true, R.raw.blowing, R.drawable.ic_wind)
+        val s8 = SoundView(this, "Cutting", true, R.raw.cutting, R.drawable.ic_cut)
+        val s9 = SoundView(this, "Eating", true, R.raw.eating, R.drawable.ic_eat)
+        val s10 = SoundView(this, "Hea Scratching", true, R.raw.head_scratching, R.drawable.ic_hand_5)
+        val s11 = SoundView(this, "Typing", true, R.raw.typing, R.drawable.ic_keyboard)
 
-        val s12 = SoundView(
-            this,
-            "Bottle",
-            true,
-            R.raw.bottle
-        )
-        val s13 = SoundView(
-            this,
-            "Gloves",
-            true,
-            R.raw.gloves
-        )
-        val s14 = SoundView(
-            this,
-            "Hands #1",
-            true,
-            R.raw.hands_1
-        )
-        val s15 = SoundView(
-            this,
-            "Hands #2",
-            true,
-            R.raw.hands_2
-        )
-        val s16 = SoundView(
-            this,
-            "Hands #3",
-            true,
-            R.raw.hands_3
-        )
-        val s17 = SoundView(
-            this,
-            "Massage",
-            true,
-            R.raw.massage
-        )
-        val s18 =
-            SoundView(this, "Mouth", true, R.raw.mouth)
-        val s19 = SoundView(
-            this,
-            "Packaging",
-            true,
-            R.raw.packaging
-        )
-        val s20 = SoundView(
-            this,
-            "Tapping #1",
-            true,
-            R.raw.tapping_1
-        )
-        val s21 = SoundView(
-            this,
-            "Tapping #2",
-            true,
-            R.raw.tapping_2
-        )
-        val s22 = SoundView(
-            this,
-            "Tapping #3",
-            true,
-            R.raw.tapping_3
-        )
-        val s23 =
-            SoundView(this, "Water", true, R.raw.water)
+        val s12 = SoundView(this, "Bottle", true, R.raw.bottle, R.drawable.ic_bottle)
+        val s13 = SoundView(this, "Gloves", true, R.raw.gloves, R.drawable.ic_hand_7)
+        val s14 = SoundView(this, "Hands #1", true, R.raw.hands_1, R.drawable.ic_hand_1)
+        val s15 = SoundView(this, "Hands #2", true, R.raw.hands_2, R.drawable.ic_hand_1)
+        val s16 = SoundView(this, "Hands #3", true, R.raw.hands_3, R.drawable.ic_hand_1)
+        val s17 = SoundView(this, "Massage", true, R.raw.massage, R.drawable.ic_hand_5)
+        val s18 = SoundView(this, "Mouth", true, R.raw.mouth, R.drawable.ic_mouth)
+        val s19 = SoundView(this, "Packaging", true, R.raw.packaging, R.drawable.ic_paper)
+        val s20 = SoundView(this, "Tapping #1", true, R.raw.tapping_1, R.drawable.ic_hand_4)
+        val s21 = SoundView(this, "Tapping #2", true, R.raw.tapping_2, R.drawable.ic_hand_4)
+        val s22 = SoundView(this, "Tapping #3", true, R.raw.tapping_3, R.drawable.ic_hand_4)
+        val s23 = SoundView(this, "Water", true, R.raw.water, R.drawable.ic_water)
 
 
         naturalSoundsList.addView(s1)

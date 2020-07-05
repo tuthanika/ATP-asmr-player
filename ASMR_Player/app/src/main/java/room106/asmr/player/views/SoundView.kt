@@ -58,7 +58,8 @@ class SoundView: LinearLayout {
     constructor(context: Context?,
                 title: String,
                 isFree: Boolean,
-                mediaResource: Int): super(context) {
+                mediaResource: Int,
+                iconResource: Int): super(context) {
 
         View.inflate(context, R.layout.sound_layout, this)
 
@@ -73,6 +74,7 @@ class SoundView: LinearLayout {
 
         // Icon
         mIconView.setOnClickListener(onClickIconListener)
+        mIconView.setImageResource(iconResource)
 
         // Title
         mTitle = title
