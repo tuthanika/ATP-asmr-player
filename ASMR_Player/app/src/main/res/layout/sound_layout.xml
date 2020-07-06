@@ -28,8 +28,9 @@
             android:layout_marginStart="20dp"
             android:layout_height="wrap_content"
             android:text="Rain"
-            android:textSize="20sp"
-            android:textColor="@color/mainColor"/>
+            android:textSize="@dimen/font_size"
+            android:textColor="@color/mainColor"
+            android:fontFamily="@font/cabin_regular"/>
 
         <ImageButton
             android:id="@+id/buttonPlay"

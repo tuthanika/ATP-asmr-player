@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:text="@string/timer_title"
         android:textSize="@dimen/font_size"
-        android:textColor="@color/mainColor"/>
+        android:textColor="@color/mainColor"
+        android:fontFamily="@font/cabin_regular"/>
 
 </LinearLayout>

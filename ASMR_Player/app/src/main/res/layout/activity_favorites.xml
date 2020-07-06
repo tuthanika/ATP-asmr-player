@@ -30,7 +30,8 @@
             android:textSize="20sp"
             android:gravity="center"
             android:textColor="@color/fontColor"
-            android:text="@string/favotires_activity_title"/>
+            android:text="@string/favotires_activity_title"
+            android:fontFamily="@font/cabin_regular"/>
 
     </RelativeLayout>
 
@@ -63,11 +64,12 @@
         android:text="@string/save_current_button"
         android:textAllCaps="false"
         android:textColor="#FFF"
-        android:textSize="20sp"
+        android:textSize="@dimen/font_size"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/main_button"
         android:onClick="onClickSaveCurrent"
+        android:fontFamily="@font/cabin_regular"
         style="@style/Widget.AppCompat.Button.Borderless"/>
 
 </RelativeLayout>

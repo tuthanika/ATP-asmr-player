@@ -31,7 +31,8 @@
             android:gravity="center"
             android:textColor="@color/fontColor"
             android:text="@string/sleep_timer_header"
-            android:onClick="onClickBack"/>
+            android:onClick="onClickBack"
+            android:fontFamily="@font/cabin_regular"/>
 
     </RelativeLayout>
 
@@ -66,12 +67,13 @@
         android:text="@string/cancel_timer_buttin"
         android:textAllCaps="false"
         android:textColor="#FFF"
-        android:textSize="20sp"
+        android:textSize="@dimen/font_size"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/main_button"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:onClick="onClickCancelTimer"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:fontFamily="@font/cabin_regular"/>
 
 </RelativeLayout>
