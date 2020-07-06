@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">ASMR_Player</string>
-    <string name="favotires_activity_title">Favotires</string>
+    <string name="app_name">ASMR Player</string>
+    <string name="favorites_activity_title">Favotires</string>
     <string name="save_current_button">Save current</string>
     <string name="sleep_timer_header">Sleep Timer</string>
     <string name="timer_title">Off</string>
@@ -9,6 +9,6 @@
     <string name="natural_sound_block_title">Natural</string>
     <string name="process_sound_block_title">Process</string>
     <string name="asmr_triggers_sound_block_title">ASMR Triggers</string>
-    <string name="cancel_timer_buttin">Cancel timer</string>
+    <string name="cancel_timer_button">Cancel timer</string>
     <string name="time_to_left_pattern">%dm %ds</string>
 </resources>

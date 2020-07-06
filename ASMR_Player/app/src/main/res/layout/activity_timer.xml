@@ -64,7 +64,7 @@
         android:layout_marginStart="@dimen/list_padding"
         android:layout_marginEnd="@dimen/list_padding"
         android:layout_alignParentBottom="true"
-        android:text="@string/cancel_timer_buttin"
+        android:text="@string/cancel_timer_button"
         android:textAllCaps="false"
         android:textColor="#FFF"
         android:textSize="@dimen/font_size"

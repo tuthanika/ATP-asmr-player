@@ -30,7 +30,7 @@
             android:textSize="20sp"
             android:gravity="center"
             android:textColor="@color/fontColor"
-            android:text="@string/favotires_activity_title"
+            android:text="@string/favorites_activity_title"
             android:fontFamily="@font/cabin_regular"/>
 
     </RelativeLayout>
