@@ -5,7 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import room106.asmr.player.FileReader
@@ -19,6 +21,8 @@ class FavoritesActivity : AppCompatActivity() {
 
     // Views
     private lateinit var mFavoriteMixesLinearLayout: LinearLayout
+    private lateinit var mSaveCurrentMixButton: Button
+    private lateinit var mEmptyFavoritesListTextView: TextView
 
     private var mCurrentMix: Mix? = null
     private var mMixesList: MixesList? = null
@@ -27,13 +31,25 @@ class FavoritesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
 
+        // Connect views
+        mFavoriteMixesLinearLayout = findViewById(R.id.favoriteMixesList)
+        mSaveCurrentMixButton = findViewById(R.id.saveCurrentMixButton)
+        mEmptyFavoritesListTextView = findViewById(R.id.emptyFavoritesListTextView)
+
+
         if (intent.extras!!.containsKey("currentMixJSON")) {
             val json = intent.extras!!.getString("currentMixJSON")
             mCurrentMix = Gson().fromJson(json, Mix::class.java)
-        }
 
-        // Connect views
-        mFavoriteMixesLinearLayout = findViewById(R.id.favoriteMixesList)
+            // Hide or show Save Current Mix button according to sound that playing at that moment
+            if (mCurrentMix != null) {
+                if (mCurrentMix!!.isNotSingleSound()) {
+                    mSaveCurrentMixButton.visibility = View.VISIBLE
+                } else {
+                    mSaveCurrentMixButton.visibility = View.GONE
+                }
+            }
+        }
 
         val mixesJSON = FileReader().readFavoriteMixesList(this)
         if (mixesJSON != null) {
@@ -48,6 +64,16 @@ class FavoritesActivity : AppCompatActivity() {
         updateMixesListView()
     }
 
+    private fun checkMixesListSize() {
+        if (mMixesList == null) { return }
+
+        if (mMixesList!!.isEmpty()) {
+            mEmptyFavoritesListTextView.visibility = View.VISIBLE
+        } else {
+            mEmptyFavoritesListTextView.visibility = View.GONE
+        }
+    }
+
     fun onClickSaveCurrent(v: View) {
         if (mMixesList != null && mCurrentMix != null) {
             mMixesList!!.addMix(mCurrentMix!!)
@@ -55,16 +81,17 @@ class FavoritesActivity : AppCompatActivity() {
             val mixesListJSON = Gson().toJson(mMixesList)
             Log.d("JSON", "mixesListJSON: $mixesListJSON")
 
-            FileReader()
-                .rewriteFavoriteMixesList(this, mixesListJSON)
+            FileReader().rewriteFavoriteMixesList(this, mixesListJSON)
+            mSaveCurrentMixButton.visibility = View.GONE
+            updateMixesListView()
         }
-
-        updateMixesListView()
     }
 
     private fun updateMixesListView() {
-
         if (mMixesList == null) return
+
+        // Show or Hide "Empty list" TextView
+        checkMixesListSize()
 
         mFavoriteMixesLinearLayout.removeAllViews()
 

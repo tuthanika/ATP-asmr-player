@@ -12,7 +12,9 @@
         android:id="@+id/favorite_header"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
 
         <ImageButton
             android:layout_width="50dp"
@@ -20,7 +22,7 @@
             android:src="@drawable/ic_back"
             android:scaleType="fitCenter"
             android:padding="12dp"
-            android:background="@null"
+            android:background="@drawable/ripple"
             android:onClick="onClickBack"/>
 
         <TextView
@@ -69,7 +71,20 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/main_button"
         android:onClick="onClickSaveCurrent"
-        android:fontFamily="@font/cabin_regular"
+        android:fontFamily="@font/cabin_bold"
         style="@style/Widget.AppCompat.Button.Borderless"/>
+
+
+    <TextView
+        android:id="@+id/emptyFavoritesListTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/fontColor"
+        android:text="@string/empty_favorites_list"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/cabin_regular"/>
 
 </RelativeLayout>

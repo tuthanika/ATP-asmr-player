@@ -12,4 +12,8 @@ class MixesList {
         return mList
     }
 
+    fun isEmpty(): Boolean {
+        return mList.size == 0
+    }
+
 }

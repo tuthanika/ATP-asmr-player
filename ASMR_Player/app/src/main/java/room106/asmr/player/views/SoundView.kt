@@ -72,6 +72,12 @@ class SoundView: LinearLayout {
         mStereoSeekBar = findViewById(R.id.seekBarStereo)
         mSwitchDynamicStereo = findViewById(R.id.switchDynamicStereo)
 
+
+        // Set control panel icon reset listeners
+        findViewById<ImageButton>(R.id.controlPanelVolumeIcon).setOnClickListener(onClickResetVolumeListener)
+        findViewById<ImageButton>(R.id.controlPanelStereoIcon).setOnClickListener(onClickResetStereoListener)
+        findViewById<ImageButton>(R.id.controlPanelDynamicIcon).setOnClickListener(onClickResetDynamicListener)
+
         // Icon
         mIconView.setOnClickListener(onClickIconListener)
         mIconView.setImageResource(iconResource)
@@ -101,6 +107,11 @@ class SoundView: LinearLayout {
         // Create media player
         loopMediaPlayer =
             LoopMediaPlayer(context, mediaResource)
+
+        // Update volume by default
+        val volume = seekBarVolume.progress.toFloat() / VOLUME_SEEKBAR_MAX
+        val stereo = seekBarStereo.progress.toFloat() / STEREO_SEEKBAR_MAX
+        updateVolumeStereo(volume, stereo)
     }
 
     private val onClickIconListener = OnClickListener {
@@ -278,6 +289,27 @@ class SoundView: LinearLayout {
 
     fun isPlaying(): Boolean {
         return _isPlaying
+    }
+
+
+    // Control Panel Icon Listeners
+    private val onClickResetVolumeListener = OnClickListener {
+
+        val progress = seekBarVolume.progress
+
+        if (progress == 0) {
+            seekBarVolume.progress = VOLUME_SEEKBAR_MAX
+        } else {
+            seekBarVolume.progress = 0
+        }
+    }
+
+    private val onClickResetStereoListener = OnClickListener {
+        seekBarStereo.progress = STEREO_SEEKBAR_MAX / 2
+    }
+
+    private val onClickResetDynamicListener = OnClickListener {
+        switchDynamicStereo.isChecked = !switchDynamicStereo.isChecked
     }
 
 

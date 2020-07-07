@@ -21,4 +21,12 @@ class Mix {
         }
         return false
     }
+
+    fun isEmpty(): Boolean {
+        return mSounds.size == 0
+    }
+
+    fun isNotSingleSound(): Boolean {
+        return mSounds.size > 1
+    }
 }

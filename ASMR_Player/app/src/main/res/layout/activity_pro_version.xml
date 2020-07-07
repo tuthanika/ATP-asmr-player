@@ -10,7 +10,7 @@
     <ImageButton
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@null"
+        android:background="@drawable/ripple"
         android:scaleType="fitCenter"
         android:padding="8dp"
         android:layout_marginTop="10dp"
@@ -62,7 +62,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/main_button"
-        android:fontFamily="@font/cabin_regular"
+        android:fontFamily="@font/cabin_bold"
         style="@style/Widget.AppCompat.Button.Borderless"/>
 
 </RelativeLayout>

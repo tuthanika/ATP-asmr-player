@@ -10,4 +10,5 @@
 
     <dimen name="seekbar_height">2dp</dimen>
     <integer name="animation_duration">300</integer>
+    <integer name="button_color_fade_time">300</integer>
 </resources>
