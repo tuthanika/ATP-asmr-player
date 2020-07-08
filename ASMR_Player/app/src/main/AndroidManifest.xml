@@ -9,11 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CloseActivity"></activity>
-        <activity android:name=".activities.ProVersionActivity" />
-        <activity android:name=".activities.TimerActivity" />
-        <activity android:name=".activities.FavoritesActivity" />
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".CloseActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.ProVersionActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.TimerActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.FavoritesActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

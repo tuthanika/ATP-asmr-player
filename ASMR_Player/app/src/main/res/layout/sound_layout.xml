@@ -76,11 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="100"
-                android:progress="80"
-                android:thumb="@drawable/seekbar_thumb"
-                android:splitTrack="false"
-                android:maxHeight="@dimen/seekbar_height"
-                android:progressDrawable="@drawable/seekbar_style"/>
+                android:progress="80"/>
 
         </LinearLayout>
 
@@ -96,7 +92,7 @@
                 android:layout_height="50dp"
                 android:src="@drawable/ic_stereo"
                 android:scaleType="fitCenter"
-                android:padding="12dp"
+                android:padding="8dp"
                 android:background="@drawable/control_panel_ripple"/>
 
             <SeekBar
@@ -104,11 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:progress="250"
-                android:max="500"
-                android:thumb="@drawable/seekbar_thumb"
-                android:splitTrack="false"
-                android:maxHeight="@dimen/seekbar_height"
-                android:progressDrawable="@drawable/stereo_seekbar_style"/>
+                android:max="500"/>
 
         </LinearLayout>
 

@@ -9,10 +9,12 @@
     <color name="backgroundIconColor">#F5F7F8</color>
     <color name="backgroundIconPressedColor">#EDF1F3</color>
     <color name="controlPanelBackgroundColor">#F5F7F8</color>
-
     <color name="fontColor">#5A5A5A</color>
     <color name="seekBarProgressActiveColor">#5A5A5A</color>
     <color name="seekBarProgressColor">#BCBCBC</color>
+
+    <color name="rippleSimple">#E1E4E6</color>
+    <color name="controlPanelRippleColor">#DADFE1</color>
 
 
     <color name="colorPrimary">#F5F7F8</color>

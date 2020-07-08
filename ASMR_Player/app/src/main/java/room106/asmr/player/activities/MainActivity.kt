@@ -12,6 +12,7 @@ import com.google.gson.Gson
 import room106.asmr.player.CloseActivity
 import room106.asmr.player.R
 import room106.asmr.player.models.Mix
+import room106.asmr.player.views.GuideView
 import room106.asmr.player.views.SoundView
 
 
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var naturalSoundsList: LinearLayout
     private lateinit var processSoundsList: LinearLayout
     private lateinit var asmrSoundsList: LinearLayout
+    private lateinit var mGuideView: GuideView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         naturalSoundsList = findViewById(R.id.naturalSoundsList)
         processSoundsList = findViewById(R.id.processSoundsList)
         asmrSoundsList = findViewById(R.id.asmrSoundsList)
+        mGuideView = findViewById(R.id.guideView)
 
         //region Create SoundViews
         val s1 = SoundView(this, "Fireplace", true, R.raw.fireplace, R.drawable.ic_fire)
@@ -181,4 +184,7 @@ class MainActivity : AppCompatActivity() {
         return mixJSON
     }
 
+    fun hideGuidePanel() {
+        mGuideView.hideGuidePanel()
+    }
 }

@@ -110,7 +110,18 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/space_between_blocks"/>
+                android:layout_height="10dp"/>
+
+            <room106.asmr.player.views.GuideView
+                android:id="@+id/guideView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/list_padding"
+                android:layout_marginEnd="@dimen/list_padding"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
 
             <TextView
                 android:layout_width="wrap_content"

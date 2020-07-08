@@ -11,6 +11,7 @@ import android.widget.*
 import kotlinx.android.synthetic.main.sound_layout.view.*
 import room106.asmr.player.LoopMediaPlayer
 import room106.asmr.player.R
+import room106.asmr.player.activities.MainActivity
 import room106.asmr.player.models.Sound
 import java.lang.Thread.sleep
 
@@ -149,6 +150,9 @@ class SoundView: LinearLayout {
             valueAnimator.addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
                     mControlPanel.visibility = View.INVISIBLE
+
+                    //  Hide guide
+                    (context as MainActivity).hideGuidePanel()
                 }
             })
 
@@ -217,7 +221,6 @@ class SoundView: LinearLayout {
             sleep(50)
         }
     }
-    private val dynamicStereoThread = Thread(dynamicStereoRunnable)
 
     private val onDynamicStereoSwitchChange = CompoundButton.OnCheckedChangeListener {
             _: CompoundButton,
@@ -226,6 +229,7 @@ class SoundView: LinearLayout {
         Log.d(TAG, "Switch changed: $isChecked")
 
         if (isChecked) {
+            val dynamicStereoThread = Thread(dynamicStereoRunnable)
             dynamicStereoThread.start()
         }
     }

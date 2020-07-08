@@ -12,4 +12,5 @@
     <string name="cancel_timer_button">Cancel timer</string>
     <string name="time_to_left_pattern">%dm %ds</string>
     <string name="empty_favorites_list">Empty list</string>
+    <string name="guide">Press on Sound Icon to \nShow/Hide Control Panel</string>
 </resources>
