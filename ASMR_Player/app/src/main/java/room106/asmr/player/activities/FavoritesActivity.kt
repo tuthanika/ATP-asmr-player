@@ -40,15 +40,6 @@ class FavoritesActivity : AppCompatActivity() {
         if (intent.extras!!.containsKey("currentMixJSON")) {
             val json = intent.extras!!.getString("currentMixJSON")
             mCurrentMix = Gson().fromJson(json, Mix::class.java)
-
-            // Hide or show Save Current Mix button according to sound that playing at that moment
-            if (mCurrentMix != null) {
-                if (mCurrentMix!!.isNotSingleSound()) {
-                    mSaveCurrentMixButton.visibility = View.VISIBLE
-                } else {
-                    mSaveCurrentMixButton.visibility = View.GONE
-                }
-            }
         }
 
         val mixesJSON = FileReader().readFavoriteMixesList(this)
@@ -62,6 +53,19 @@ class FavoritesActivity : AppCompatActivity() {
         }
 
         updateMixesListView()
+        checkSaveCurrentMixButton()
+    }
+
+    private fun checkSaveCurrentMixButton() {
+        if (mCurrentMix != null && mMixesList != null) {
+
+            if (mCurrentMix!!.isNotSingleSound() && !mMixesList!!.contains(mCurrentMix!!)) {
+                mSaveCurrentMixButton.visibility = View.VISIBLE
+                return
+            }
+        }
+
+        mSaveCurrentMixButton.visibility = View.GONE
     }
 
     private fun checkMixesListSize() {
@@ -128,6 +132,10 @@ class FavoritesActivity : AppCompatActivity() {
             R.anim.freeze,
             R.anim.slide_out_left
         )
+    }
+
+    companion object {
+        const val TAG = "FavoritesActivity"
     }
 
 }

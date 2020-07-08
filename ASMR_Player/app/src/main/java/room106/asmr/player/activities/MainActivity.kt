@@ -187,4 +187,21 @@ class MainActivity : AppCompatActivity() {
     fun hideGuidePanel() {
         mGuideView.hideGuidePanel()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        val lists = ArrayList<LinearLayout>().apply {
+            add(naturalSoundsList)
+            add(processSoundsList)
+            add(asmrSoundsList)
+        }
+
+        for (soundsList in lists) {
+            for (i in 0 until soundsList.childCount) {
+                val soundView = soundsList[i] as SoundView
+                soundView.pause()
+            }
+        }
+    }
 }

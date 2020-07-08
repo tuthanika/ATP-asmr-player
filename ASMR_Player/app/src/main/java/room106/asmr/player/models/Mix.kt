@@ -29,4 +29,22 @@ class Mix {
     fun isNotSingleSound(): Boolean {
         return mSounds.size > 1
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (other is Mix) {
+            val otherSoundList = other.getSoundsList()
+
+            if (mSounds.size != otherSoundList.size) {
+                return false
+            }
+
+            for (i in 0 until mSounds.size) {
+                if (mSounds[i].title != otherSoundList[i].title) {
+                    return false
+                }
+            }
+            return true
+        }
+        return false
+    }
 }

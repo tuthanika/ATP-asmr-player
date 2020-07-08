@@ -16,4 +16,15 @@ class MixesList {
         return mList.size == 0
     }
 
+    fun contains(mixToCheck: Mix): Boolean {
+
+        for (mix in mList) {
+            if (mix == mixToCheck) {
+                return true
+            }
+        }
+
+        return false
+    }
+
 }
