@@ -6,9 +6,9 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
-import room106.asmr.player.activities.FavoritesActivity
+import room106.asmr.player.ASMR
 import room106.asmr.player.R
-import room106.asmr.player.models.Mix
+import room106.asmr.player.activities.FavoritesActivity
 
 class FavoriteMixView: LinearLayout {
 
@@ -26,9 +26,10 @@ class FavoriteMixView: LinearLayout {
     private lateinit var mMixTitleTextView: TextView
     private lateinit var mPlayButton: ImageButton
 
-    private var mMix: Mix? = null
 
-    constructor(context: Context?, mixTitle: String): super(context) {
+    private var mixID = -1
+
+    constructor(context: Context?, mixID: Int): super(context) {
         View.inflate(context,
             R.layout.favorite_mix_layout, this)
 
@@ -36,19 +37,23 @@ class FavoriteMixView: LinearLayout {
         mMixTitleTextView = findViewById(R.id.mixTitleTextView)
         mPlayButton = findViewById(R.id.playMixButton)
 
+        this.mixID = mixID
 
-        mMixTitleTextView.text = mixTitle
+        mMixTitleTextView.text = resources.getString(R.string.mix_title_attr, mixID + 1)
         mPlayButton.setOnClickListener {
-            if (mMix != null) {
-                (context as FavoritesActivity).playMix(mMix!!)
-            }
+            ASMR.player.playMix(mixID)
 
+            (context as FavoritesActivity).updateMixesIcons()
         }
     }
 
-    fun setMix(mix: Mix) {
-        mMix = mix
+
+    fun updateIcon() {
+        val image = if (ASMR.player.playingMixID == mixID) {
+            R.drawable.ic_pause
+        } else {
+            R.drawable.ic_play
+        }
+        mPlayButton.setImageResource(image)
     }
-
-
 }

@@ -14,4 +14,5 @@
     <string name="empty_favorites_list">Empty list</string>
     <string name="guide">Press on Sound Icon to Show/Hide Control Panel</string>
     <string name="guide_in_two_lines">Press on Sound Icon to \nShow/Hide Control Panel</string>
+    <string name="mix_title_attr">Mix #%d</string>
 </resources>

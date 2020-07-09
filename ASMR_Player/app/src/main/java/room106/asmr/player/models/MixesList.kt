@@ -27,4 +27,15 @@ class MixesList {
         return false
     }
 
+    fun getMixID(mixToCheck: Mix): Int {
+
+        for (i in 0 until mList.size) {
+            if (mList[i] == mixToCheck) {
+                return i
+            }
+        }
+
+        return -1
+    }
+
 }

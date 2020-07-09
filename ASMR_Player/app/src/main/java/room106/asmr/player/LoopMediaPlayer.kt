@@ -31,7 +31,7 @@ internal class LoopMediaPlayer(private val context: Context?, private val resId:
         createNextMediaPlayer()
     }
 
-    fun start() {
+    fun play() {
         mCurrentPlayer?.start()
     }
 
@@ -39,9 +39,16 @@ internal class LoopMediaPlayer(private val context: Context?, private val resId:
         mCurrentPlayer?.pause()
     }
 
+    fun isPlaying(): Boolean {
+        return mCurrentPlayer?.isPlaying ?: false
+    }
+
+
     fun setVolume(leftVolume: Float, rightVolume: Float) {
         this.leftVolume = leftVolume
         this.rightVolume = rightVolume
         mCurrentPlayer?.setVolume(leftVolume, rightVolume)
     }
+
+    fun getVolume() = listOf(leftVolume, rightVolume)
 }

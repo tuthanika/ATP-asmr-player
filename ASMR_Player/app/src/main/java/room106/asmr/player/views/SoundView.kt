@@ -9,10 +9,9 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import kotlinx.android.synthetic.main.sound_layout.view.*
-import room106.asmr.player.LoopMediaPlayer
+import room106.asmr.player.ASMR
 import room106.asmr.player.R
 import room106.asmr.player.activities.MainActivity
-import room106.asmr.player.models.Sound
 import java.lang.Thread.sleep
 
 
@@ -29,7 +28,7 @@ class SoundView: LinearLayout {
     //endregion
 
     // Views
-    private lateinit var mIconView: ImageButton
+    private lateinit var mIconButton: ImageButton
     private lateinit var mTitleView: TextView
     private lateinit var mPlayButton: ImageButton
     private lateinit var mControlPanel: LinearLayout
@@ -44,28 +43,24 @@ class SoundView: LinearLayout {
     private var mTitle: String? = null
 
     // States
-    private var isFree = false
-    private var _isPlaying = false
 
     // Consts
     private val VOLUME_SEEKBAR_MAX = 100
     private val STEREO_SEEKBAR_MAX = 500
 
     // Sound
-    private var loopMediaPlayer: LoopMediaPlayer? = null
+    private lateinit var mSound: ASMR.Sound
     private val MIN_STEREO_SOUND = 0f
     private var dynamicIncreasing = true
 
     constructor(context: Context?,
-                title: String,
-                isFree: Boolean,
-                mediaResource: Int,
+                sound: ASMR.Sound,
                 iconResource: Int): super(context) {
 
         View.inflate(context, R.layout.sound_layout, this)
 
         // Connect views
-        mIconView = findViewById(R.id.soundIcon)
+        mIconButton = findViewById(R.id.soundIcon)
         mTitleView = findViewById(R.id.soundTitle)
         mControlPanel = findViewById(R.id.controlPanel)
         mPlayButton = findViewById(R.id.buttonPlay)
@@ -80,18 +75,18 @@ class SoundView: LinearLayout {
         findViewById<ImageButton>(R.id.controlPanelDynamicIcon).setOnClickListener(onClickResetDynamicListener)
 
         // Icon
-        mIconView.setOnClickListener(onClickIconListener)
-        mIconView.setImageResource(iconResource)
+        mIconButton.setOnClickListener(onClickIconListener)
+        mIconButton.setImageResource(iconResource)
 
         // Title
-        mTitle = title
-        mTitleView.text = title
+        mTitleView.text = sound.title
+
+        mSound = sound
 
         // Play Button
-        this.isFree = isFree
         mPlayButton.setOnClickListener(onClickPlayButton)
 
-        if (isFree) {
+        if (sound.isFree) {
             mPlayButton.setImageResource(R.drawable.ic_play)
         } else {
             mPlayButton.setImageResource(R.drawable.ic_lock)
@@ -104,10 +99,6 @@ class SoundView: LinearLayout {
         mVolumeSeekBar.setOnSeekBarChangeListener(onVolumeSeekBarChangeListener)
         mStereoSeekBar.setOnSeekBarChangeListener(onStereoSeekBarChangeListener)
         mSwitchDynamicStereo.setOnCheckedChangeListener(onDynamicStereoSwitchChange)
-
-        // Create media player
-        loopMediaPlayer =
-            LoopMediaPlayer(context, mediaResource)
 
         // Update volume by default
         val volume = seekBarVolume.progress.toFloat() / VOLUME_SEEKBAR_MAX
@@ -164,19 +155,18 @@ class SoundView: LinearLayout {
     private val onClickPlayButton = OnClickListener {
 
         // TODO - Add - "if (isFree || isProVersion)"
-        if (isFree) {
-            _isPlaying = !_isPlaying
+        if (mSound.isFree) {
 
-            if (_isPlaying) {
-                mPlayButton.setImageResource(R.drawable.ic_pause)
-
-                // Play sound
-                loopMediaPlayer?.start()
-            } else {
+            if (ASMR.player.isPlaying(mSound)) {
                 mPlayButton.setImageResource(R.drawable.ic_play)
 
                 // Stop sound
-                loopMediaPlayer?.pause()
+                ASMR.player.pause(mSound)
+            } else {
+                mPlayButton.setImageResource(R.drawable.ic_pause)
+
+                // Play sound
+                ASMR.player.play(mSound)
             }
         }
     }
@@ -246,53 +236,28 @@ class SoundView: LinearLayout {
             rightVolume = MIN_STEREO_SOUND
         }
 
-        loopMediaPlayer?.setVolume(leftVolume, rightVolume)
-        Log.d(TAG,"Volume=$volume. Stereo=$stereo. L=$leftVolume R=$rightVolume")
+        ASMR.player.setVolume(mSound, leftVolume, rightVolume)
+        ASMR.player.saveSlidersParameters(mSound, volume, stereo)
     }
 
 
-    fun getSoundObject(): Sound? {
+    fun updateSliderValues() {
+        val sound = ASMR.player.getSlideValues(mSound)
 
-        if (_isPlaying) {
-            if (mTitle != null) {
-                val volume = seekBarVolume.progress.toFloat() / VOLUME_SEEKBAR_MAX
-                val stereo = seekBarStereo.progress.toFloat() / STEREO_SEEKBAR_MAX
-
-                return Sound(mTitle!!, volume, stereo, switchDynamicStereo.isChecked)
-            }
+        if (sound != null) {
+            mVolumeSeekBar.progress = (sound.volume * VOLUME_SEEKBAR_MAX).toInt()
+            mStereoSeekBar.progress = (sound.stereo * STEREO_SEEKBAR_MAX).toInt()
         }
-        return null
     }
 
-    fun isTitleEqual(title: String): Boolean {
-        return mTitle.equals(title)
-    }
+    fun updateIcon() {
 
-    fun setSoundObject(sound: Sound) {
-        mVolumeSeekBar.progress = (sound.volume * VOLUME_SEEKBAR_MAX).toInt()
-        mStereoSeekBar.progress = (sound.stereo * STEREO_SEEKBAR_MAX).toInt()
-        mSwitchDynamicStereo.isChecked = sound.isDynamic
-        updateVolumeStereo(sound.volume, sound.stereo)
-    }
-
-    fun play() {
-        _isPlaying = true
-        mPlayButton.setImageResource(R.drawable.ic_pause)
-
-        // Play sound
-        loopMediaPlayer?.start()
-    }
-
-    fun pause() {
-        _isPlaying = false
-        mPlayButton.setImageResource(R.drawable.ic_play)
-
-        // Stop sound
-        loopMediaPlayer?.pause()
-    }
-
-    fun isPlaying(): Boolean {
-        return _isPlaying
+        val image = if (ASMR.player.isPlaying(mSound)) {
+            R.drawable.ic_pause
+        } else {
+            R.drawable.ic_play
+        }
+        mPlayButton.setImageResource(image)
     }
 
 
