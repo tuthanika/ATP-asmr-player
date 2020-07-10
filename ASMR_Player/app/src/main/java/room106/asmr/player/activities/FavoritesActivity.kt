@@ -23,8 +23,6 @@ class FavoritesActivity : AppCompatActivity() {
     private lateinit var mSaveCurrentMixButton: Button
     private lateinit var mEmptyFavoritesListTextView: TextView
 
-//    private var mMixesList: MixesList? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
@@ -41,12 +39,13 @@ class FavoritesActivity : AppCompatActivity() {
     }
 
     // Show/Hide "Save current mix"
-    private fun checkSaveCurrentMixButton() {
+    fun checkSaveCurrentMixButton() {
         val currentMix = ASMR.player.currentMix
         val isNotSingle = currentMix.isNotSingleSound()
         val isContains = ASMR.player.isMixesListContains(currentMix)
+        val isLessThanMax = ASMR.player.mixesList.size < ASMR.player.MAX_FAVORITES
 
-        mSaveCurrentMixButton.visibility = if (isNotSingle && !isContains) {
+        mSaveCurrentMixButton.visibility = if (isNotSingle && !isContains && isLessThanMax) {
             View.VISIBLE
         } else {
             View.GONE

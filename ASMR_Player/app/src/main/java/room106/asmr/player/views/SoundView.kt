@@ -44,7 +44,7 @@ class SoundView: LinearLayout {
 
     // States
 
-    // Consts
+    // Constants
     private val VOLUME_SEEKBAR_MAX = 100
     private val STEREO_SEEKBAR_MAX = 500
 
@@ -281,9 +281,7 @@ class SoundView: LinearLayout {
         switchDynamicStereo.isChecked = !switchDynamicStereo.isChecked
     }
 
-
     companion object {
         const val TAG = "SoundView"
     }
-
 }

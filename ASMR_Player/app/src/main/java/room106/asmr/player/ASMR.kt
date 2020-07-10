@@ -45,6 +45,7 @@ class ASMR private constructor() {
 
     private val VOLUMES_BY_DEFAULT = 0.8f
     private val STEREO_BY_DEFAULT = 0.5f
+    val MAX_FAVORITES = 20
 
     fun initializeMediaPlayers(context: Context) {
         for (sound in Sound.values()) {
@@ -151,9 +152,7 @@ class ASMR private constructor() {
             playingMixID = mixID
         }
 
-        val mixToPlay = mMixesList.getList()[mixID]
-
-        currentMix = mixToPlay
+        currentMix = mMixesList.getList()[mixID]
     }
 
     fun getSlideValues(sound: Sound): room106.asmr.player.models.SoundProperties? {

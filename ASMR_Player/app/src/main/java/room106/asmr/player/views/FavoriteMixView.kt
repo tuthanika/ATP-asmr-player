@@ -44,6 +44,7 @@ class FavoriteMixView: LinearLayout {
             ASMR.player.playMix(mixID)
 
             (context as FavoritesActivity).updateMixesIcons()
+            context.checkSaveCurrentMixButton()
         }
     }
 

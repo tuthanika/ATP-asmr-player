@@ -47,10 +47,6 @@ class Mix {
             }
 
             for (i in 0 until mSounds.size) {
-//                if (mSounds[i].sound != otherSoundList[i].sound) {
-//                    return false
-//                }
-
                 if (!isSoundExist(otherSoundList[i].sound)) {
                     return false
                 }
