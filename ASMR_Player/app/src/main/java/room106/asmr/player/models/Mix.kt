@@ -4,34 +4,25 @@ import room106.asmr.player.ASMR
 
 class Mix {
 
-    private var mSounds = ArrayList<SoundProperties>()
+//    private var mSounds = ArrayList<SoundProperties>()
+    private var mSounds = HashMap<ASMR.Sound, SoundProperties>()
 
-    fun add(sound: SoundProperties?) {
-        if (sound != null) {
-            mSounds.add(sound)
+    fun add(sound: ASMR.Sound, soundProperties: SoundProperties?) {
+        if (soundProperties != null) {
+            mSounds[sound] = soundProperties
         }
     }
 
-    fun getSoundsList(): ArrayList<SoundProperties> {
+    fun getSoundsList(): HashMap<ASMR.Sound, SoundProperties> {
         return mSounds
     }
 
     fun getSound(sound: ASMR.Sound): SoundProperties? {
-        for (s in mSounds) {
-            if (s.sound == sound) {
-                return s
-            }
-        }
-        return null
+        return mSounds[sound]
     }
 
     private fun isSoundExist(soundToCheck: ASMR.Sound): Boolean {
-        for (sound in mSounds) {
-            if (sound.sound == soundToCheck) {
-                return true
-            }
-        }
-        return false
+        return mSounds.containsKey(soundToCheck)
     }
 
     fun isNotSingleSound(): Boolean {
@@ -46,14 +37,17 @@ class Mix {
                 return false
             }
 
-            for (i in 0 until mSounds.size) {
-                if (!isSoundExist(otherSoundList[i].sound)) {
+            for ((sound, soundProperties) in mSounds) {
+                if (!other.isSoundExist(sound)) {
                     return false
                 }
-
             }
             return true
         }
         return false
+    }
+
+    override fun hashCode(): Int {
+        return mSounds.hashCode()
     }
 }

@@ -87,7 +87,7 @@ class ASMR private constructor() {
 
             for ((sound, player) in mSounds) {
                 if (player.isPlaying()) {
-                    mix.add(mSliderValues[sound])
+                    mix.add(sound, mSliderValues[sound])
                 }
             }
 

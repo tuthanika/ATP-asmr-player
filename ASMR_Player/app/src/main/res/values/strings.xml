@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">ASMR Player</string>
-    <string name="favorites_activity_title">Favotires</string>
+    <string name="favorites_activity_title">Favorites</string>
     <string name="save_current_button">Save current mix</string>
     <string name="sleep_timer_header">Sleep Timer</string>
     <string name="timer_title">Off</string>
