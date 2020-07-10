@@ -163,10 +163,12 @@ class SoundView: LinearLayout {
                 // Stop sound
                 ASMR.player.pause(mSound)
             } else {
-                mPlayButton.setImageResource(R.drawable.ic_pause)
+                if (ASMR.player.isAbleToPlayOneMoreSound()) {
+                    mPlayButton.setImageResource(R.drawable.ic_pause)
 
-                // Play sound
-                ASMR.player.play(mSound)
+                    // Play sound
+                    ASMR.player.play(mSound)
+                }
             }
         }
     }

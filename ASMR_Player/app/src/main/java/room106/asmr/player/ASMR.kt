@@ -46,6 +46,7 @@ class ASMR private constructor() {
     private val VOLUMES_BY_DEFAULT = 0.8f
     private val STEREO_BY_DEFAULT = 0.5f
     val MAX_FAVORITES = 20
+    val MAX_SOUNDS = 4
 
     fun initializeMediaPlayers(context: Context) {
         for (sound in Sound.values()) {
@@ -54,6 +55,10 @@ class ASMR private constructor() {
             }
             mSliderValues[sound] = SoundProperties(sound, VOLUMES_BY_DEFAULT, STEREO_BY_DEFAULT)
         }
+    }
+
+    fun isAbleToPlayOneMoreSound(): Boolean {
+        return mSounds.filterValues { it.isPlaying() }.size < MAX_SOUNDS
     }
 
     fun play(sound: Sound) {
