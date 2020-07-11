@@ -2,17 +2,14 @@ package room106.asmr.player.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.get
-import kotlinx.android.synthetic.main.sound_layout.view.*
 import room106.asmr.player.R
 import room106.asmr.player.TimerEventReceiver
 import room106.asmr.player.views.TimerView
-import kotlin.concurrent.timer
 
 class TimerActivity : AppCompatActivity() {
 
@@ -70,7 +67,6 @@ class TimerActivity : AppCompatActivity() {
         // Hide "Cancel timer" button
         mCancelTimerButton.visibility = View.GONE
     }
-
 
     fun onClickBack(v: View) {
         finish()

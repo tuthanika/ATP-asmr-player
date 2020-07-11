@@ -22,7 +22,8 @@
             android:src="@drawable/ic_back"
             android:scaleType="fitCenter"
             android:padding="12dp"
-            android:background="@null"/>
+            android:background="@null"
+            android:contentDescription="@string/back_button_content" />
 
         <TextView
             android:id="@+id/timerHeaderTextView"

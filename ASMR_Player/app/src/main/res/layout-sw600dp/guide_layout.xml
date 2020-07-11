@@ -14,7 +14,8 @@
         android:background="@null"
         android:src="@drawable/ic_info"
         android:scaleType="fitCenter"
-        android:padding="8dp"/>
+        android:padding="8dp"
+        android:contentDescription="@string/guide_icon_content"/>
 
     <TextView
         android:layout_width="match_parent"

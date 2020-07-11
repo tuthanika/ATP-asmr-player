@@ -15,4 +15,19 @@
     <string name="guide">Press on Sound Icon to Show/Hide Control Panel</string>
     <string name="guide_in_two_lines">Press on Sound Icon to \nShow/Hide Control Panel</string>
     <string name="mix_title_attr">Mix #%d</string>
+    <string name="change_global_volume_button_content">Change Global Volume Button</string>
+    <string name="buy_pro_version_button_content">Buy Pro Version Button</string>
+    <string name="favorites_activity_button_content">Favorites Activity Button</string>
+    <string name="timer_button_content">Timer Button</string>
+    <string name="random_button_content">Random Button</string>
+    <string name="back_button_content">Back Button</string>
+    <string name="mix_1">Mix #1</string>
+    <string name="play_button_content">Play Button</string>
+    <string name="mix_icon_content">Mix Icon</string>
+    <string name="guide_icon_content">Guide Icon</string>
+    <string name="sound_icon_content">Sound Icon</string>
+    <string name="volume_icon_content">Volume Icon</string>
+    <string name="stereo_icon_content">Stereo Icon</string>
+    <string name="dynamic_icon_content">Dynamic Icon</string>
+    <string name="timer_icon_content">Timer Icon</string>
 </resources>

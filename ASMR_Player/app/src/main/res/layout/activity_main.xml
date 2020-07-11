@@ -24,7 +24,8 @@
             android:background="@drawable/ripple"
             android:scaleType="fitCenter"
             android:padding="10dp"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:contentDescription="@string/change_global_volume_button_content" />
 
         <ImageButton
             android:layout_width="50dp"
@@ -34,7 +35,10 @@
             android:scaleType="fitCenter"
             android:layout_marginEnd="5dp"
             android:padding="12dp"
-            android:onClick="onClickBuyProVersion"/>
+            android:onClick="onClickBuyProVersion"
+            android:visibility="gone"
+            android:contentDescription="@string/buy_pro_version_button_content" />
+
         <View
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -48,7 +52,8 @@
             android:scaleType="fitCenter"
             android:layout_marginEnd="5dp"
             android:padding="12dp"
-            android:onClick="onClickFavorites"/>
+            android:onClick="onClickFavorites"
+            android:contentDescription="@string/favorites_activity_button_content" />
 
         <ImageButton
             android:layout_width="50dp"
@@ -59,7 +64,8 @@
             android:layout_marginEnd="5dp"
             android:padding="12dp"
             android:onClick="onClickSleepTimer"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:contentDescription="@string/timer_button_content" />
 
         <ImageButton
             android:layout_width="50dp"
@@ -69,7 +75,8 @@
             android:scaleType="fitCenter"
             android:layout_marginEnd="5dp"
             android:padding="12dp"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:contentDescription="@string/random_button_content" />
 
     </LinearLayout>
 

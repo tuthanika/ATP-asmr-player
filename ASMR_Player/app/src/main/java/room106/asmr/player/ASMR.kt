@@ -9,7 +9,6 @@ import room106.asmr.player.models.SoundProperties
 
 class ASMR private constructor() {
 
-
     enum class Sound(val title: String, val resID: Int, val isFree: Boolean) {
         FIREPLACE("Fire", R.raw.fireplace, true),
         RAIN("Rain", R.raw.rain, true),

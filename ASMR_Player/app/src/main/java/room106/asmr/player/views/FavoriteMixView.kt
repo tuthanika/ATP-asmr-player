@@ -48,7 +48,6 @@ class FavoriteMixView: LinearLayout {
         }
     }
 
-
     fun updateIcon() {
         val image = if (ASMR.player.playingMixID == mixID) {
             R.drawable.ic_pause

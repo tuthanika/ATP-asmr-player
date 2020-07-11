@@ -19,7 +19,8 @@
             android:src="@drawable/ic_tmp_icon"
             android:scaleType="fitCenter"
             android:padding="16dp"
-            android:background="@drawable/sound_icon_background"/>
+            android:background="@drawable/sound_icon_background"
+            android:contentDescription="@string/sound_icon_content" />
 
         <TextView
             android:id="@+id/soundTitle"
@@ -27,7 +28,6 @@
             android:layout_weight="1"
             android:layout_marginStart="20dp"
             android:layout_height="wrap_content"
-            android:text="Rain"
             android:textSize="@dimen/font_size"
             android:textColor="@color/mainColor"
             android:fontFamily="@font/cabin_regular"/>
@@ -40,7 +40,8 @@
             android:src="@drawable/ic_play"
             android:scaleType="fitCenter"
             android:padding="16dp"
-            android:layout_marginEnd="0dp"/>
+            android:layout_marginEnd="0dp"
+            android:contentDescription="@string/play_button_content" />
 
     </LinearLayout>
 
@@ -69,7 +70,8 @@
                 android:src="@drawable/ic_volume"
                 android:scaleType="fitCenter"
                 android:padding="12dp"
-                android:background="@drawable/control_panel_ripple"/>
+                android:background="@drawable/control_panel_ripple"
+                android:contentDescription="@string/volume_icon_content" />
 
             <SeekBar
                 android:id="@+id/seekBarVolume"
@@ -94,7 +96,8 @@
                 android:src="@drawable/ic_stereo"
                 android:scaleType="fitCenter"
                 android:padding="8dp"
-                android:background="@drawable/control_panel_ripple"/>
+                android:background="@drawable/control_panel_ripple"
+                android:contentDescription="@string/stereo_icon_content" />
 
             <SeekBar
                 android:id="@+id/seekBarStereo"
@@ -120,7 +123,8 @@
                 android:src="@drawable/ic_dynamic"
                 android:scaleType="fitCenter"
                 android:padding="12dp"
-                android:background="@drawable/control_panel_ripple"/>
+                android:background="@drawable/control_panel_ripple"
+                android:contentDescription="@string/dynamic_icon_content" />
 
             <Switch
                 android:id="@+id/switchDynamicStereo"

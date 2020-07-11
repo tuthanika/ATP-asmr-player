@@ -1,7 +1,6 @@
 package room106.asmr.player
 
 import android.content.Context
-import android.view.Display
 
 class SharedPreferencesManager(context: Context) {
 

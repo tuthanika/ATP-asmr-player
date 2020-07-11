@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.widget.*
 import kotlinx.android.synthetic.main.sound_layout.view.*
@@ -67,7 +66,6 @@ class SoundView: LinearLayout {
         mVolumeSeekBar = findViewById(R.id.seekBarVolume)
         mStereoSeekBar = findViewById(R.id.seekBarStereo)
         mSwitchDynamicStereo = findViewById(R.id.switchDynamicStereo)
-
 
         // Set control panel icon reset listeners
         findViewById<ImageButton>(R.id.controlPanelVolumeIcon).setOnClickListener(onClickResetVolumeListener)
@@ -154,7 +152,6 @@ class SoundView: LinearLayout {
 
     private val onClickPlayButton = OnClickListener {
 
-        // TODO - Add - "if (isFree || isProVersion)"
         if (mSound.isFree) {
 
             if (ASMR.player.isPlaying(mSound)) {
@@ -218,8 +215,6 @@ class SoundView: LinearLayout {
             _: CompoundButton,
             isChecked: Boolean ->
 
-        Log.d(TAG, "Switch changed: $isChecked")
-
         if (isChecked) {
             val dynamicStereoThread = Thread(dynamicStereoRunnable)
             dynamicStereoThread.start()
@@ -262,7 +257,6 @@ class SoundView: LinearLayout {
         mPlayButton.setImageResource(image)
     }
 
-
     // Control Panel Icon Listeners
     private val onClickResetVolumeListener = OnClickListener {
 
@@ -281,9 +275,5 @@ class SoundView: LinearLayout {
 
     private val onClickResetDynamicListener = OnClickListener {
         switchDynamicStereo.isChecked = !switchDynamicStereo.isChecked
-    }
-
-    companion object {
-        const val TAG = "SoundView"
     }
 }

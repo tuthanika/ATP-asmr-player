@@ -1,48 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/list_padding"
+    android:paddingEnd="@dimen/list_padding"
+    android:gravity="center"
+    android:layout_marginBottom="10dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="@dimen/sound_icon_size"
+        android:layout_height="@dimen/sound_icon_size"
+        android:src="@drawable/ic_musical_note"
+        android:scaleType="fitCenter"
+        android:padding="18dp"
+        android:background="@drawable/sound_icon_background"
+        android:contentDescription="@string/mix_icon_content" />
+
+    <TextView
+        android:id="@+id/mixTitleTextView"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginStart="20dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginStart="@dimen/list_padding"
-        android:layout_marginEnd="@dimen/list_padding"
-        android:gravity="center"
-        android:layout_marginBottom="10dp">
+        android:text="@string/mix_1"
+        android:textSize="@dimen/font_size"
+        android:textColor="@color/mainColor"
+        android:fontFamily="@font/cabin_regular"/>
 
-        <ImageView
-            android:layout_width="@dimen/sound_icon_size"
-            android:layout_height="@dimen/sound_icon_size"
-            android:src="@drawable/ic_musical_note"
-            android:scaleType="fitCenter"
-            android:padding="18dp"
-            android:background="@drawable/sound_icon_background"/>
-
-        <TextView
-            android:id="@+id/mixTitleTextView"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_marginStart="20dp"
-            android:layout_height="wrap_content"
-            android:text="Mix #1"
-            android:textSize="@dimen/font_size"
-            android:textColor="@color/mainColor"
-            android:fontFamily="@font/cabin_regular"/>
-
-        <ImageButton
-            android:id="@+id/playMixButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/ripple"
-            android:src="@drawable/ic_play"
-            android:scaleType="fitCenter"
-            android:padding="16dp"
-            android:layout_marginEnd="0dp"/>
-
-    </LinearLayout>
-
+    <ImageButton
+        android:id="@+id/playMixButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/ripple"
+        android:src="@drawable/ic_play"
+        android:scaleType="fitCenter"
+        android:padding="16dp"
+        android:layout_marginEnd="0dp"
+        android:contentDescription="@string/play_button_content" />
 
 </LinearLayout>
+

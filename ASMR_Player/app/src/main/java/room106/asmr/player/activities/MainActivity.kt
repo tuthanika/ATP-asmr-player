@@ -89,7 +89,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
         updateSoundView()
     }
 
@@ -141,5 +140,4 @@ class MainActivity : AppCompatActivity() {
     fun hideGuidePanel() {
         mGuideView.hideGuidePanel()
     }
-
 }

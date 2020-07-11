@@ -43,7 +43,6 @@ internal class LoopMediaPlayer(private val context: Context?, private val resId:
         return mCurrentPlayer?.isPlaying ?: false
     }
 
-
     fun setVolume(leftVolume: Float, rightVolume: Float) {
         this.leftVolume = leftVolume
         this.rightVolume = rightVolume

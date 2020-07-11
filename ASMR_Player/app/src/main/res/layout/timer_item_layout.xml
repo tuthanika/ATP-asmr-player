@@ -13,7 +13,8 @@
         android:src="@drawable/ic_timer"
         android:scaleType="fitCenter"
         android:padding="18dp"
-        android:background="@drawable/sound_icon_background"/>
+        android:background="@drawable/sound_icon_background"
+        android:contentDescription="@string/timer_icon_content" />
 
     <TextView
         android:id="@+id/timerTitle"

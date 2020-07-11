@@ -23,7 +23,8 @@
             android:scaleType="fitCenter"
             android:padding="12dp"
             android:background="@drawable/ripple"
-            android:onClick="onClickBack"/>
+            android:onClick="onClickBack"
+            android:contentDescription="@string/back_button_content" />
 
         <TextView
             android:layout_width="match_parent"
@@ -74,7 +75,6 @@
         android:onClick="onClickSaveCurrent"
         android:fontFamily="@font/cabin_bold"
         style="@style/Widget.AppCompat.Button.Borderless"/>
-
 
     <TextView
         android:id="@+id/emptyFavoritesListTextView"

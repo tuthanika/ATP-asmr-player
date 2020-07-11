@@ -4,7 +4,6 @@ import room106.asmr.player.ASMR
 
 class Mix {
 
-//    private var mSounds = ArrayList<SoundProperties>()
     private var mSounds = HashMap<ASMR.Sound, SoundProperties>()
 
     fun add(sound: ASMR.Sound, soundProperties: SoundProperties?) {

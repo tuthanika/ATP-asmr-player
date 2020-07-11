@@ -65,5 +65,4 @@ class TimerView: LinearLayout {
                mTimerIconImageView.setBackgroundResource(R.drawable.sound_icon_background)
            }
         }
-
 }
