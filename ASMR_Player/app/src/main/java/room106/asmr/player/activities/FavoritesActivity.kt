@@ -1,92 +1,45 @@
 package room106.asmr.player.activities
 
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import room106.asmr.player.ASMR
 import room106.asmr.player.R
 import room106.asmr.player.views.FavoriteMixView
 
-
 class FavoritesActivity : AppCompatActivity() {
-
-    // Views
-    private lateinit var mFavoriteMixesLinearLayout: LinearLayout
-    private lateinit var mSaveCurrentMixButton: Button
-    private lateinit var mEmptyFavoritesListTextView: TextView
+    private lateinit var mixesListLayout: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
-
-        // Connect views
-        mFavoriteMixesLinearLayout = findViewById(R.id.favoriteMixesList)
-        mSaveCurrentMixButton = findViewById(R.id.saveCurrentMixButton)
-        mEmptyFavoritesListTextView = findViewById(R.id.emptyFavoritesListTextView)
-
-        ASMR.player.readMixesList(this)
-
-        checkSaveCurrentMixButton()
+        mixesListLayout = findViewById(R.id.mixesListLayout)
         updateMixesListView()
     }
 
-    // Show/Hide "Save current mix"
-    fun checkSaveCurrentMixButton() {
-        val currentMix = ASMR.player.currentMix
-        val isNotSingle = currentMix.isNotSingleSound()
-        val isContains = ASMR.player.isMixesListContains(currentMix)
-        val isLessThanMax = ASMR.player.mixesList.size < ASMR.player.MAX_FAVORITES
-
-        mSaveCurrentMixButton.visibility = if (isNotSingle && !isContains && isLessThanMax) {
-            View.VISIBLE
-        } else {
-            View.GONE
+    // Cập nhật danh sách mix yêu thích (UI)
+    fun updateMixesListView() {
+        mixesListLayout.removeAllViews()
+        val mixes = ASMR.player.mixesList.getList()
+        for ((index, _) in mixes.withIndex()) {
+            val mixView = FavoriteMixView(this, index)
+            mixesListLayout.addView(mixView)
         }
     }
 
-    // Click "Save current mix"
-    fun onClickSaveCurrent(v: View) {
-        ASMR.player.saveCurrentMix(this)
-        mSaveCurrentMixButton.visibility = View.GONE
-        checkSaveCurrentMixButton()
-        updateMixesListView()
-    }
-
-    // Update Mixes List
-    private fun updateMixesListView() {
-
-        val list = ASMR.player.mixesList
-        mFavoriteMixesLinearLayout.removeAllViews()
-
-        if (list.isEmpty()) {
-            mEmptyFavoritesListTextView.visibility = View.VISIBLE
-        } else {
-            mEmptyFavoritesListTextView.visibility = View.GONE
-
-            for (i in 0 until list.size) {
-                val mixView = FavoriteMixView(this, i)
-                mFavoriteMixesLinearLayout.addView(mixView)
-            }
-
-            updateMixesIcons()
-        }
-    }
-
-    // Update Play buttons
+    // Cập nhật icon Play/Pause cho các FavoriteMixView
     fun updateMixesIcons() {
-        for (i in 0 until mFavoriteMixesLinearLayout.childCount) {
-            (mFavoriteMixesLinearLayout.getChildAt(i) as FavoriteMixView).updateIcon()
+        for (i in 0 until mixesListLayout.childCount) {
+            val child = mixesListLayout.getChildAt(i)
+            if (child is FavoriteMixView) {
+                child.updateIcon()
+            }
         }
     }
 
-    fun onClickBack(v: View) {
-        finish()
-        overridePendingTransition(
-            R.anim.freeze,
-            R.anim.slide_out_left
-        )
+    // Nếu có nút lưu trạng thái mix hiện tại, cập nhật trạng thái nút này tại đây
+    fun checkSaveCurrentMixButton() {
+        // Tùy vào giao diện gốc, có thể hiện hoặc ẩn nút lưu mix hiện tại
+        // (hoặc cập nhật trạng thái enabled/disabled, v.v.)
     }
 }
