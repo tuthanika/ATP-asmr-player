@@ -20,9 +20,14 @@
     <string name="favorites_activity_button_content">Favorites Activity Button</string>
     <string name="timer_button_content">Timer Button</string>
     <string name="random_button_content">Random Button</string>
+    <string name="reload_mix_list_content">Reload Mix Button</string>
     <string name="back_button_content">Back Button</string>
+    <string name="clear_all_favorites_content">Clear Mix Button</string>
     <string name="mix_1">Mix #1</string>
     <string name="play_button_content">Play Button</string>
+    <string name="delete_mix_button_content">Delete Mix Button</string>
+    <string name="rename_mix_button_content">Rename Mix Button</string>
+    <string name="delete_button_content">Delete Sound Button</string>
     <string name="mix_icon_content">Mix Icon</string>
     <string name="guide_icon_content">Guide Icon</string>
     <string name="sound_icon_content">Sound Icon</string>
