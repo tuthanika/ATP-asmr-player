@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
@@ -12,7 +13,6 @@ import room106.asmr.player.R
 import room106.asmr.player.views.GuideView
 import room106.asmr.player.views.SoundView
 
-
 class MainActivity : AppCompatActivity() {
 
     // Views
@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var processSoundsList: LinearLayout
     private lateinit var asmrSoundsList: LinearLayout
     private lateinit var mGuideView: GuideView
+    // Bổ sung: Nút reload mixes
+    private var buttonReloadMixes: ImageButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         processSoundsList = findViewById(R.id.processSoundsList)
         asmrSoundsList = findViewById(R.id.asmrSoundsList)
         mGuideView = findViewById(R.id.guideView)
+        buttonReloadMixes = findViewById(R.id.buttonReloadMixes)
 
         ASMR.player.initializeMediaPlayers(this)
 
@@ -85,6 +88,11 @@ class MainActivity : AppCompatActivity() {
         asmrSoundsList.addView(s22)
         asmrSoundsList.addView(s23)
         //endregion
+
+        // Bổ sung: reload lại danh sách mixes (nếu cần)
+        buttonReloadMixes?.setOnClickListener {
+            ASMR.player.reloadMixesFromPrefs(this)
+        }
     }
 
     override fun onResume() {
