@@ -1,91 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/favoritesRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.FavoritesActivity"
-    android:background="@color/backgroundColor"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="8dp">
 
-    <RelativeLayout
-        android:id="@+id/favorite_header"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp">
-
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_back"
-            android:scaleType="fitCenter"
-            android:padding="12dp"
-            android:background="@drawable/ripple"
-            android:onClick="onClickBack"
-            android:contentDescription="@string/back_button_content" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="@color/fontColor"
-            android:text="@string/favorites_activity_title"
-            android:fontFamily="@font/cabin_regular"/>
-
-    </RelativeLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:scrollbars="none"
-        android:layout_below="@id/favorite_header"
-        android:layout_above="@id/saveCurrentMixButton">
-
-        <LinearLayout
-            android:id="@+id/favoriteMixesList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:paddingBottom="10dp"
-            android:orientation="vertical"
-            android:divider="@drawable/list_divider"
-            android:showDividers="middle"/>
-
-    </ScrollView>
-
-    <Button
-        android:id="@+id/saveCurrentMixButton"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_marginStart="@dimen/list_padding"
-        android:layout_marginEnd="@dimen/list_padding"
-        android:layout_alignParentBottom="true"
-        android:text="@string/save_current_button"
-        android:textAllCaps="false"
-        android:textColor="#FFF"
-        android:textSize="@dimen/font_size"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/main_button"
-        android:onClick="onClickSaveCurrent"
-        android:fontFamily="@font/cabin_bold"
-        style="@style/Widget.AppCompat.Button.Borderless"/>
-
+    <!-- Tiêu đề hoặc toolbar -->
     <TextView
-        android:id="@+id/emptyFavoritesListTextView"
+        android:id="@+id/favoritesTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:textColor="@color/fontColor"
-        android:text="@string/empty_favorites_list"
-        android:layout_centerInParent="true"
-        android:fontFamily="@font/cabin_regular"/>
+        android:text="Danh sách Mix Yêu Thích"
+        android:textStyle="bold"
+        android:textSize="19sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="14dp"/>
 
-</RelativeLayout>
+    <!-- Danh sách các FavoriteMixView sẽ được thêm động bằng code -->
+    <LinearLayout
+        android:id="@+id/mixesListLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+    <!-- Có thể bổ sung nút hoặc thông báo nếu danh sách rỗng -->
+    <!-- ... -->
+
+</LinearLayout>
