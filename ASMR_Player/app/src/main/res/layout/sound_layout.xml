@@ -43,6 +43,19 @@
             android:layout_marginEnd="0dp"
             android:contentDescription="@string/play_button_content" />
 
+        <!-- Nút xóa chỉ hiện khi là custom sound, mặc định ẩn -->
+        <ImageButton
+            android:id="@+id/buttonDelete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ripple"
+            android:src="@drawable/ic_delete"
+            android:scaleType="fitCenter"
+            android:padding="8dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/delete_button_content"
+            android:visibility="gone" />
+
     </LinearLayout>
 
     <LinearLayout
