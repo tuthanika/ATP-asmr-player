@@ -40,7 +40,7 @@
         android:layout_marginEnd="0dp"
         android:contentDescription="@string/play_button_content" />
 
-    <!-- B? SUNG: Nút xóa mix yêu thích, m?c d?nh ?n, ch? hi?n v?i quy?n ch?nh s?a -->
+    <!-- Bá»• sung nÃºt xoÃ¡ mix -->
     <ImageButton
         android:id="@+id/deleteMixButton"
         android:layout_width="40dp"
@@ -53,7 +53,7 @@
         android:contentDescription="@string/delete_mix_button_content"
         android:visibility="gone" />
 
-    <!-- B? SUNG: Nút d?i tên mix, m?c d?nh ?n, ch? hi?n v?i quy?n ch?nh s?a -->
+    <!-- Bá»• sung nÃºt rename mix -->
     <ImageButton
         android:id="@+id/renameMixButton"
         android:layout_width="40dp"
