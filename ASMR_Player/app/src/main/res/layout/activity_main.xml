@@ -78,6 +78,19 @@
             android:visibility="gone"
             android:contentDescription="@string/random_button_content" />
 
+        <!-- BỔ SUNG: Nút reload lại danh sách mix (nếu cần, mặc định ẩn) -->
+        <ImageButton
+            android:id="@+id/buttonReloadMixes"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_refresh"
+            android:background="@drawable/ripple"
+            android:scaleType="fitCenter"
+            android:layout_marginStart="5dp"
+            android:padding="12dp"
+            android:visibility="gone"
+            android:contentDescription="@string/reload_mix_list_content" />
+
     </LinearLayout>
 
     <ScrollView
