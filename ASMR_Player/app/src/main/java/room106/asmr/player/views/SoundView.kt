@@ -13,8 +13,7 @@ import room106.asmr.player.R
 import room106.asmr.player.activities.MainActivity
 import java.lang.Thread.sleep
 
-
-class SoundView: LinearLayout {
+class SoundView : LinearLayout {
 
     //region Constructors
     constructor(context: Context?) : super(context)
@@ -35,6 +34,9 @@ class SoundView: LinearLayout {
     private lateinit var mStereoSeekBar: SeekBar
     private lateinit var mSwitchDynamicStereo: Switch
 
+    // Bổ sung: Nút xóa custom sound (nếu layout có)
+    private var mDeleteButton: ImageButton? = null
+
     private var controlPanelIsVisible = false
     private var controlPanelMeasuredHeight = 0
 
@@ -52,9 +54,11 @@ class SoundView: LinearLayout {
     private val MIN_STEREO_SOUND = 0f
     private var dynamicIncreasing = true
 
-    constructor(context: Context?,
-                sound: ASMR.Sound,
-                iconResource: Int): super(context) {
+    constructor(
+        context: Context?,
+        sound: ASMR.Sound,
+        iconResource: Int
+    ) : super(context) {
 
         View.inflate(context, R.layout.sound_layout, this)
 
@@ -66,6 +70,8 @@ class SoundView: LinearLayout {
         mVolumeSeekBar = findViewById(R.id.seekBarVolume)
         mStereoSeekBar = findViewById(R.id.seekBarStereo)
         mSwitchDynamicStereo = findViewById(R.id.switchDynamicStereo)
+        // Bổ sung: Tìm nút xóa (nếu có)
+        mDeleteButton = findViewById(R.id.buttonDelete)
 
         // Set control panel icon reset listeners
         findViewById<ImageButton>(R.id.controlPanelVolumeIcon).setOnClickListener(onClickResetVolumeListener)
@@ -98,10 +104,31 @@ class SoundView: LinearLayout {
         mStereoSeekBar.setOnSeekBarChangeListener(onStereoSeekBarChangeListener)
         mSwitchDynamicStereo.setOnCheckedChangeListener(onDynamicStereoSwitchChange)
 
+        // Xử lý nút xóa custom sound (nếu có)
+        mDeleteButton?.let { deleteBtn ->
+            deleteBtn.visibility = if (isCustomSound(sound)) View.VISIBLE else View.GONE
+            deleteBtn.setOnClickListener {
+                onDeleteCustomSound()
+            }
+        }
+
         // Update volume by default
         val volume = seekBarVolume.progress.toFloat() / VOLUME_SEEKBAR_MAX
         val stereo = seekBarStereo.progress.toFloat() / STEREO_SEEKBAR_MAX
         updateVolumeStereo(volume, stereo)
+    }
+
+    // Xác định sound có phải custom không (bạn có thể sửa lại logic này)
+    private fun isCustomSound(sound: ASMR.Sound): Boolean {
+        // Giả sử custom sound có isFree = false hoặc check theo tên hoặc resource id
+        // Bạn tùy chỉnh theo ý muốn
+        return false // nếu muốn tắt nút xóa mặc định
+    }
+
+    // Hàm xử lý xóa custom sound (bạn cần bổ sung logic thực sự)
+    private fun onDeleteCustomSound() {
+        // TODO: Thực hiện logic xóa custom sound ở đây, ví dụ gọi MainActivity hoặc callback lên Activity
+        Toast.makeText(context, "Delete custom sound!", Toast.LENGTH_SHORT).show()
     }
 
     private val onClickIconListener = OnClickListener {
@@ -170,9 +197,9 @@ class SoundView: LinearLayout {
         }
     }
 
-    private val onVolumeSeekBarChangeListener = object: SeekBar.OnSeekBarChangeListener {
-        override fun onStartTrackingTouch(p0: SeekBar?) { }
-        override fun onStopTrackingTouch(p0: SeekBar?) { }
+    private val onVolumeSeekBarChangeListener = object : SeekBar.OnSeekBarChangeListener {
+        override fun onStartTrackingTouch(p0: SeekBar?) {}
+        override fun onStopTrackingTouch(p0: SeekBar?) {}
         override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
 
             val volume = progress.toFloat() / VOLUME_SEEKBAR_MAX
@@ -181,9 +208,9 @@ class SoundView: LinearLayout {
         }
     }
 
-    private val onStereoSeekBarChangeListener = object: SeekBar.OnSeekBarChangeListener {
-        override fun onStartTrackingTouch(p0: SeekBar?) { }
-        override fun onStopTrackingTouch(p0: SeekBar?) { }
+    private val onStereoSeekBarChangeListener = object : SeekBar.OnSeekBarChangeListener {
+        override fun onStartTrackingTouch(p0: SeekBar?) {}
+        override fun onStopTrackingTouch(p0: SeekBar?) {}
         override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
 
             val volume = seekBarVolume.progress.toFloat() / VOLUME_SEEKBAR_MAX
@@ -211,9 +238,7 @@ class SoundView: LinearLayout {
         }
     }
 
-    private val onDynamicStereoSwitchChange = CompoundButton.OnCheckedChangeListener {
-            _: CompoundButton,
-            isChecked: Boolean ->
+    private val onDynamicStereoSwitchChange = CompoundButton.OnCheckedChangeListener { _: CompoundButton, isChecked: Boolean ->
 
         if (isChecked) {
             val dynamicStereoThread = Thread(dynamicStereoRunnable)
@@ -236,7 +261,6 @@ class SoundView: LinearLayout {
         ASMR.player.setVolume(mSound, leftVolume, rightVolume)
         ASMR.player.saveSlidersParameters(mSound, volume, stereo)
     }
-
 
     fun updateSliderValues() {
         val sound = ASMR.player.getSlideValues(mSound)
