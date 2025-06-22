@@ -6,7 +6,6 @@ import room106.asmr.player.models.Mix
 import room106.asmr.player.models.MixesList
 import room106.asmr.player.models.SoundProperties
 
-
 class ASMR private constructor() {
 
     enum class Sound(val title: String, val resID: Int, val isFree: Boolean) {
@@ -119,7 +118,6 @@ class ASMR private constructor() {
             }
         }
 
-
     fun readMixesList(context: Context) {
         val mixesJSON = FileReader().readFavoriteMixesList(context)
         mMixesList = Gson().fromJson(mixesJSON, MixesList::class.java) ?: MixesList()
@@ -136,16 +134,13 @@ class ASMR private constructor() {
     }
 
     fun saveCurrentMix(context: Context) {
-
         mMixesList.addMix(currentMix)
         val json = Gson().toJson(mMixesList)
-
         // Save mMixesList instance in favorites.json file
         FileReader().rewriteFavoriteMixesList(context, json)
     }
 
     fun playMix(mixID: Int) {
-
         // Save playing mix id
         if (playingMixID == mixID) {
             // Pressed on the same mix that is playing right now (Should be stopped)
@@ -155,7 +150,6 @@ class ASMR private constructor() {
         } else {
             playingMixID = mixID
         }
-
         currentMix = mMixesList.getList()[mixID]
     }
 
@@ -168,6 +162,37 @@ class ASMR private constructor() {
             player.pause()
         }
     }
+
+    // ========== B? SUNG TÍNH NANG M?I ==========
+
+    fun deleteMix(context: Context, mixID: Int) {
+        if (mixID >= 0 && mixID < mMixesList.size()) {
+            mMixesList.removeAt(context, mixID)
+            // N?u dang phát mix này thì d?ng t?t c?
+            if (playingMixID == mixID) {
+                pauseAllSounds()
+                playingMixID = -1
+            }
+        }
+    }
+
+    fun renameMix(context: Context, mixID: Int, newName: String) {
+        if (mixID >= 0 && mixID < mMixesList.size()) {
+            mMixesList.renameMix(context, mixID, newName)
+        }
+    }
+
+    fun clearAllMixes(context: Context) {
+        mMixesList.clear(context)
+        pauseAllSounds()
+        playingMixID = -1
+    }
+
+    fun reloadMixesFromPrefs(context: Context) {
+        mMixesList.loadFromPrefs(context)
+    }
+
+    // ========== END B? SUNG ==========
 
     private object HOLDER {
         val INSTANCE = ASMR()
