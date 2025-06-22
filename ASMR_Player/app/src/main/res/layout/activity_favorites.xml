@@ -36,6 +36,19 @@
             android:text="@string/favorites_activity_title"
             android:fontFamily="@font/cabin_regular"/>
 
+        <!-- BỔ SUNG: Nút xóa tất cả mixes -->
+        <ImageButton
+            android:id="@+id/buttonClearAllMixes"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_delete"
+            android:scaleType="fitCenter"
+            android:padding="12dp"
+            android:background="@drawable/ripple"
+            android:contentDescription="@string/clear_all_favorites_content"
+            android:visibility="gone" />
     </RelativeLayout>
 
     <ScrollView
@@ -55,7 +68,6 @@
             android:orientation="vertical"
             android:divider="@drawable/list_divider"
             android:showDividers="middle"/>
-
     </ScrollView>
 
     <Button
