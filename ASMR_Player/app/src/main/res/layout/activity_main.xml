@@ -1,177 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity"
-    android:background="@color/backgroundColor">
+    android:orientation="vertical">
 
+    <!-- Phần giao diện âm thanh gốc (ví dụ) -->
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ASMR Player"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp" />
+
+    <!-- Danh sách âm thanh gốc (ví dụ, bạn có thể thay đổi cho đúng project thực tế) -->
     <LinearLayout
-        android:id="@+id/header"
+        android:id="@+id/soundsListLayout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Thanh điều chỉnh tổng âm lượng (ví dụ) -->
+    <SeekBar
+        android:id="@+id/masterVolumeSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Các nút điều khiển phát/tạm dừng, mix... (ví dụ) -->
+    <LinearLayout
+        android:id="@+id/controlButtonsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="6dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp">
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="12dp">
 
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_volume"
-            android:background="@drawable/ripple"
-            android:scaleType="fitCenter"
-            android:padding="10dp"
-            android:visibility="gone"
-            android:contentDescription="@string/change_global_volume_button_content" />
+        <Button
+            android:id="@+id/buttonPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phát" />
 
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_unlock"
-            android:background="@drawable/ripple"
-            android:scaleType="fitCenter"
-            android:layout_marginEnd="5dp"
-            android:padding="12dp"
-            android:onClick="onClickBuyProVersion"
-            android:visibility="gone"
-            android:contentDescription="@string/buy_pro_version_button_content" />
+        <Button
+            android:id="@+id/buttonPause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tạm dừng"
+            android:layout_marginLeft="12dp" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"/>
-
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_favorites"
-            android:background="@drawable/ripple"
-            android:scaleType="fitCenter"
-            android:layout_marginEnd="5dp"
-            android:padding="12dp"
-            android:onClick="onClickFavorites"
-            android:contentDescription="@string/favorites_activity_button_content" />
-
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_timer"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:layout_marginEnd="5dp"
-            android:padding="12dp"
-            android:onClick="onClickSleepTimer"
-            android:visibility="gone"
-            android:contentDescription="@string/timer_button_content" />
-
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_random"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:layout_marginEnd="5dp"
-            android:padding="12dp"
-            android:visibility="gone"
-            android:contentDescription="@string/random_button_content" />
-
+        <Button
+            android:id="@+id/buttonFavorites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yêu thích"
+            android:layout_marginLeft="12dp" />
     </LinearLayout>
 
-    <ScrollView
+    <!-- BỔ SUNG PHẦN ÂM THANH CUSTOM -->
+    <TextView
+        android:id="@+id/customSoundSectionLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Âm thanh của bạn"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="8dp"
+        android:textSize="17sp" />
+
+    <LinearLayout
+        android:id="@+id/customSoundsListLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/header"
-        android:overScrollMode="never"
-        android:scrollbars="none">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"/>
 
-        <LinearLayout
-            android:id="@+id/mainLinearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:paddingStart="0dp"
-            android:paddingEnd="0dp">
+    <Button
+        android:id="@+id/buttonAddCustomSound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thêm âm thanh"
+        android:onClick="onClickAddSound"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/natural_sound_block_title"
-                android:textColor="@color/mainColor"
-                android:layout_marginStart="@dimen/list_padding"
-                android:textSize="@dimen/block_title_size"
-                android:fontFamily="@font/cabin_regular"/>
-
-            <LinearLayout
-                android:id="@+id/naturalSoundsList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:divider="@drawable/list_divider"
-                android:showDividers="middle"/>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp"/>
-
-            <room106.asmr.player.views.GuideView
-                android:id="@+id/guideView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/list_padding"
-                android:layout_marginEnd="@dimen/list_padding"/>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/process_sound_block_title"
-                android:textColor="@color/mainColor"
-                android:layout_marginStart="@dimen/list_padding"
-                android:textSize="@dimen/block_title_size"
-                android:fontFamily="@font/cabin_regular"/>
-
-            <LinearLayout
-                android:id="@+id/processSoundsList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:divider="@drawable/list_divider"
-                android:showDividers="middle"/>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/space_between_blocks"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/asmr_triggers_sound_block_title"
-                android:textColor="@color/mainColor"
-                android:layout_marginStart="@dimen/list_padding"
-                android:textSize="@dimen/block_title_size"
-                android:fontFamily="@font/cabin_regular"/>
-
-            <LinearLayout
-                android:id="@+id/asmrSoundsList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:divider="@drawable/list_divider"
-                android:showDividers="middle"/>
-
-        </LinearLayout>
-
-    </ScrollView>
-
-</RelativeLayout>
+</LinearLayout>
