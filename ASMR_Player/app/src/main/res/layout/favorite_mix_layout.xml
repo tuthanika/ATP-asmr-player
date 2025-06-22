@@ -40,5 +40,30 @@
         android:layout_marginEnd="0dp"
         android:contentDescription="@string/play_button_content" />
 
-</LinearLayout>
+    <!-- B? SUNG: Nút xóa mix yêu thích, m?c d?nh ?n, ch? hi?n v?i quy?n ch?nh s?a -->
+    <ImageButton
+        android:id="@+id/deleteMixButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/ripple"
+        android:src="@drawable/ic_delete"
+        android:scaleType="fitCenter"
+        android:padding="8dp"
+        android:layout_marginStart="10dp"
+        android:contentDescription="@string/delete_mix_button_content"
+        android:visibility="gone" />
 
+    <!-- B? SUNG: Nút d?i tên mix, m?c d?nh ?n, ch? hi?n v?i quy?n ch?nh s?a -->
+    <ImageButton
+        android:id="@+id/renameMixButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/ripple"
+        android:src="@drawable/ic_edit"
+        android:scaleType="fitCenter"
+        android:padding="8dp"
+        android:layout_marginStart="6dp"
+        android:contentDescription="@string/rename_mix_button_content"
+        android:visibility="gone" />
+
+</LinearLayout>
